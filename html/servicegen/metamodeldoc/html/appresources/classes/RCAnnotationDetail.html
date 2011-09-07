@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Developer documentation for the model class RCAnnotationDetail</title>
+	</head><body>
+<h1>Class "appresources :: RCAnnotationDetail"</h1>
+<p>Defined in package : <img src="../../icons/ecore/EPackage.gif" /><a href="../../appresources/package.html">appresources</a></p>
+<p>Dettaglio dell'annotazione.
+Al momento le annotazioni previste variano a seconda del tipo di connettore e sono:
+<ul>
+<li>per il connettore <b>PDPAServiceConnector</b>:
+	<ul>
+		<li>source=appresources
+		  <ul>
+			<li>per tutti i tipi di binding:
+			<ul>
+				<li>key="repart-position": value="[org]/[prod]/[ver]", es: csipiemonte/iridev2/2.0.0;
+					Serve per permettere al generatore di generare le direttive di scaricamento da repart delle librerie client del servizio fruito</li>
+				<li>key="repart-artifact": value=nome dell'artifact delle librerie client del servizio (senza estensione jar, assunta di default), es: "iridev2-pep-intf-2.0.0";
+					Serve per permettere al generatore di generare le direttive di scaricamento da repart delle librerie client</li>
+			</ul>
+			</li>
+			<li>per i binding EJB:
+			<ul>
+				<li>key="csi-pd-plugin": value="ejb-1" o "ejb-2";
+					Serve per indicare che la PD (di tipo EJB) utilizza la versione deprecata di plugin (ejb invece che ejb20)</li>
+				<li>key="csi-ejbpa-jndiname": value=il nome jndi completo su cui ascolta la PA del servizio;
+					Serve per gestire casi legacy o non standard in cui non sia rispettato il nuovo standard di naming jndi</li>
+				<li>key="csi-pa-platform": value="WLS92" o "JBoss43";
+					Serve per configurare correttamente la pd in modo che possa parlare con un servizio EJB ospitato da un server Weblogic piuttosto che JBoss</li>
+				<li>key="repart-position": value="[org]/[prod]/[ver]", es: csipiemonte/iridev2/2.0.0;
+					Serve per permettere al generatore di generare le direttive di scaricamento da repart delle librerie client del servizio fruito</li>
+				<li>key="repart-artifact": value=nome dell'artifact delle librerie client del servizio (senza estensione jar, assunta di default), es: "iridev2-pep-intf-2.0.0";
+					Serve per permettere al generatore di generare le direttive di scaricamento da repart delle librerie client</li>
+			</ul>
+			</li>
+			<li>per i binding SOAP:
+			<ul>
+				<li>key="csi-soappabr-endpoint": 
+					Serve per indicare l'url dell'endpoint del soap bridge in caso non sia standard (esclusa la pate iniziale contenente l'hostname)</li>
+				<li>key="csi-soappabr-uri": 
+					Serve per indicare il nome del servizio registrato su apache soap, se non standard (equivale al name del plugin soap nella PD)</li>
+			</ul>
+			</li>
+		  </ul>
+		</li>
+	</ul>
+</li>
+</ul></p>
+
+
+
+
+
+
+
+<table border="1">
+
+
+<tr style="vertical-align:top">
+
+
+<td>
+<p>Direct Attributes</p>
+<ul>
+	<li><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EString.html">ecore :: EString</a> <img src="../icons/ecore/EAttribute.gif" /><a href="../../appresources/classes/RCAnnotationDetail.html#at_key">key</a></li>
+	<li><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EString.html">ecore :: EString</a> <img src="../icons/ecore/EAttribute.gif" /><a href="../../appresources/classes/RCAnnotationDetail.html#at_value">value</a></li>
+</ul>
+
+</td>
+
+
+
+
+
+
+
+
+</tr>
+
+
+
+
+
+</table>
+
+<p>Referenced by</p>
+<ul>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../appresources/classes/RCAnnotationDetail.html">appresources :: RCAnnotationDetail</a> <img src="../icons/ecore/EReference.gif" /><a href="../../appresources/classes/RCAnnotation.html#re_details">details</a> (<img src="../../icons/ecore/EClass.gif" /><a href="../../appresources/classes/RCAnnotation.html">appresources :: RCAnnotation</a>)</li>
+</ul>
+
+<h2><a name="at_key" /><img src="../icons/ecore/EAttribute.gif" />Attribute ecore :: EString key</h2>
+
+
+
+<table border="1">
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EString.html">ecore :: EString</a></td></tr>
+
+<tr><td>changeable</td><td>true</td></tr>
+
+
+<tr><td>defaultValueLiteral</td><td>null</td></tr>
+
+
+<tr><td>derived</td><td>false</td></tr>
+
+
+<tr><td>iD</td><td>false</td></tr>
+
+
+<tr><td>lowerBound</td><td>0</td></tr>
+
+
+<tr><td>name</td><td>key</td></tr>
+
+
+<tr><td>ordered</td><td>true</td></tr>
+
+
+<tr><td>transient</td><td>false</td></tr>
+
+
+<tr><td>unique</td><td>true</td></tr>
+
+
+<tr><td>unsettable</td><td>false</td></tr>
+
+
+<tr><td>upperBound</td><td>1</td></tr>
+
+
+<tr><td>volatile</td><td>false</td></tr>
+
+
+</tbody>
+</table>
+
+<h2><a name="at_value" /><img src="../icons/ecore/EAttribute.gif" />Attribute ecore :: EString value</h2>
+
+
+
+<table border="1">
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EString.html">ecore :: EString</a></td></tr>
+
+<tr><td>changeable</td><td>true</td></tr>
+
+
+<tr><td>defaultValueLiteral</td><td>null</td></tr>
+
+
+<tr><td>derived</td><td>false</td></tr>
+
+
+<tr><td>iD</td><td>false</td></tr>
+
+
+<tr><td>lowerBound</td><td>0</td></tr>
+
+
+<tr><td>name</td><td>value</td></tr>
+
+
+<tr><td>ordered</td><td>true</td></tr>
+
+
+<tr><td>transient</td><td>false</td></tr>
+
+
+<tr><td>unique</td><td>true</td></tr>
+
+
+<tr><td>unsettable</td><td>false</td></tr>
+
+
+<tr><td>upperBound</td><td>1</td></tr>
+
+
+<tr><td>volatile</td><td>false</td></tr>
+
+
+</tbody>
+</table>
+
+
+
+
+<div>generated on 6-set-2010 at 10.52.07 by <a href="http://metamodeldoc.randomice.net">metamodeldoc</a></div></body></html>

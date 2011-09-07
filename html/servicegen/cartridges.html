@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <title>Servicegen - cartridges disponibili</title>
+   </head>
+
+   <body>
+      <h2>
+         Servicegen - Cartridges disponibili
+      </h2>
+      <p>
+         In questo capitolo sono descritte le carucce (<i>cartridge</i>) di generazione disponibili.
+      </p>
+      
+            <h3>cartuccia di setup</h3>
+	  <p>
+	  Prima di richiamare qualsiasi altra cartuccia &egrave; necessario effettuare il <i>setup</i>del
+	  sistema di generazione, richiamando la cartuccia
+	  <code>it/csi/mddtools/servicegen/workflow/setup.oaw</code>, che non prevede parametri.
+	  	  
+	  </p>
+	  
+	  <p>
+	  Esempio:
+
+<pre>    
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/workflow/setup.oaw"</font>
+<font color='#000080'>/&gt;</font><br>
+
+</pre>    
+	  </p>
+	  
+      <h3>cartuccia di genrazione dello strato di back-end SOA</h3>
+	  <p>
+	  La generazione dello strato di back-end SOA si realizza mediante la cartuccia
+	  <code>it/csi/mddtools/servicegen/workflow/csi14.oaw</code>, che prevede i seguenti parametri:
+	  
+	  <table border="1">
+	  <thead style="background:silver"><tr><td>parametro</td><td>descrizione</td><td>esempio</td><td>obbl/opz</td></tr></thead>
+	  <tbody>
+	  <tr>
+	  <td>model</td>
+	  <td>percorso del file del modello <i>servicegen</i>, a partire dalla root del workspace eclipse</td>
+	  <td><code>myprod.mdd/src/model/myprod/mycomp/myservice.servicegen</code></td>
+	  <td>obbl</td>
+	  </tr>
+	  
+	  <tr>
+	  <td>targetProjectName</td>
+	  <td>nome del progetto java in cui devono essere generati i sorgenti</td>
+	  <td><code>mycomp</code></td>
+	  <td>obbl</td>
+	  </tr>
+	  
+	  <tr>
+	  <td>useExternalDaoBeans</td>
+	  <td>(dalla v.1.1) se impostato a <i>true</i> non viene generato il file <i>dao-beans.xml</i>, 
+	  permettendo cos&igrave; di utilizzare il file generato da <i>datagen</i>. Il valore di 
+	  default &egrave;: <i>false</i>
+	  </td>
+	  <td><code>true</code></td>
+	  <td>opz</td>
+	  </tr>
+	  
+	  </tbody>
+	  </table>
+	  
+	  </p>
+	  
+	  <p>
+	  Esempio:
+
+<pre>    
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/workflow/csi14.oaw"</font>
+  <font color='#000080'>model=</font><font color='#008000'>"myprod.mdd/src/model/myprod/mycomp/myservice.servicegen"</font>&nbsp;
+  <font color='#000080'>targetProjectName=</font><font color='#008000'>"mycomp"</font>
+<font color='#000080'>/&gt;</font><br>
+
+</pre>    
+	  </p>
+	  
+	  <b>N.B</b>: &egrave; necessario verificare i singoli modelli componenti prima di richiamare
+	  questa cartuccia, utilizzando le apposite cartucce di test descritte di seguito.
+	  
+	  <h3>Cartuccia di check del modello di interfaccia di servizio (servicedef)</h3>
+	  
+	  <p>
+	  E'necessario verificare la validit&agrave; dei modelli di interfaccia di servizio referenziati
+	  nel modello principale. Per far ci&ograve; &egrave; disponibile la cartuccia
+	  <code>it/csi/mddtools/servicegen/workflow/checkServicedef.oaw</code>, che prevede i seguenti parametri:
+	  
+	  <table border="1">
+	  <thead style="background:silver"><tr><td>parametro</td><td>descrizione</td><td>esempio</td><td>obbl/opz</td></tr></thead>
+	  <tbody>
+	  <tr>
+	  <td>model</td>
+	  <td>percorso del file del modello <i>servicedef</i>, a partire dalla root del workspace eclipse</td>
+	  <td><code>myprod.mdd/src/model/myprod/mycomp/myserviceinterface.servicedef</code></td>
+	  <td>obbl</td>
+	  </tr>
+	  
+	  </tbody>
+	  </table>
+	  
+	  </p>
+	  
+	  <p>
+	  Esempio:
+
+<pre>    
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/workflow/checkServicedef.oaw"</font>
+  <font color='#000080'>model=</font><font color='#008000'>"myprod.mdd/src/model/myprod/mycomp/myserviceinterface.servicedef"</font>&nbsp;
+<font color='#000080'>/&gt;</font><br>
+
+</pre>    
+	  </p>
+	  
+	  <h3>Cartuccia di check del modello di orchestrazione (svcorch)</h3>
+	  
+	  <p>
+	  E'necessario verificare la validit&agrave; dei modelli di orchestrazione referenziati
+	  nel modello principale. Per far ci&ograve; &egrave; disponibile la cartuccia
+	  <code>it/csi/mddtools/servicegen/workflow/checkSvcOrch.oaw</code>, che prevede i seguenti parametri:
+	  
+	  <table border="1">
+	  <thead style="background:silver"><tr><td>parametro</td><td>descrizione</td><td>esempio</td><td>obbl/opz</td></tr></thead>
+	  <tbody>
+	  <tr>
+	  <td>model</td>
+	  <td>percorso del file del modello <i>svcorch</i>, a partire dalla root del workspace eclipse</td>
+	  <td><code>myprod.mdd/src/model/myprod/mycomp/myorchestration.svcorch</code></td>
+	  <td>obbl</td>
+	  </tr>
+	  
+	  </tbody>
+	  </table>
+	  
+	  </p>
+	  
+	  <p>
+	  Esempio:
+
+<pre>    
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/workflow/checkSvcOrch.oaw"</font>
+  <font color='#000080'>model=</font><font color='#008000'>"myprod.mdd/src/model/myprod/mycomp/myorchestration.svcorch"</font>&nbsp;
+<font color='#000080'>/&gt;</font><br>
+
+</pre>    
+	  </p>
+	  
+	  <h3>Cartuccia di check del modello delle risorse accedute (appresources)</h3>
+	  
+	  <p>
+	  E'necessario verificare la validit&agrave; del modelli di descrizione delle
+	  risorse accedute.
+	  Per far ci&ograve; &egrave; disponibile la cartuccia
+	  <code>it/csi/mddtools/servicegen/workflow/checkAppresources.oaw</code>, che prevede i seguenti parametri:
+	  
+	  <table border="1">
+	  <thead style="background:silver"><tr><td>parametro</td><td>descrizione</td><td>esempio</td><td>obbl/opz</td></tr></thead>
+	  <tbody>
+	  <tr>
+	  <td>model</td>
+	  <td>percorso del file del modello <i>svcorch</i>, a partire dalla root del workspace eclipse</td>
+	  <td><code>myprod.mdd/src/model/myprod/mycomp/myresources.appresources</code></td>
+	  <td>obbl</td>
+	  </tr>
+	  
+	  </tbody>
+	  </table>
+	  
+	  </p>
+	  
+	  <p>
+	  Esempio:
+
+<pre>    
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/workflow/checkAppresources.oaw"</font>
+  <font color='#000080'>model=</font><font color='#008000'>"myprod.mdd/src/model/myprod/mycomp/myresources.appresources"</font>&nbsp;
+<font color='#000080'>/&gt;</font><br>
+
+</pre>    
+	  </p>
+
+
+   </body>
+</html>
+

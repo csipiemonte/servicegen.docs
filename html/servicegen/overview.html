@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <title>Servicegen - overview</title>
+   </head>
+
+   <body>
+      <h2>
+         Servicegen - overview
+      </h2>
+      <p>
+      <b>SERVICEGEN</b> è uno strumento di generazione di codice specifico per la generazione
+      di interi progetti software che realizzano uno o più servizi secondo il paradigma SOA. Attualmente la tecnologia
+      target è rappresentata dallo stack J2EE arricchito con le librerie di cooperazione applicativa C.S.I. 
+      Lo strumento permette di definire uno o più servizi realizzati all'interno di un componente di prodotto, secondo gli standard di
+      sviluppo e le linee guida vigenti in <i>CSIPIEMONTE</i>.
+      </p>
+      Il modello che descrive l'applicazione &egrave;:
+      <ul>
+      <li>basato su un metamodello descritto in dettaglio in <a href="mm_reference.html">[Metamodel reference]</a>;</li>
+      <li>strutturato in un insieme di modelli come descritto in dettaglio in <a href="models_structure.html">[Models structure]</a>;</li>
+      </ul>  
+      <p> 
+      Il progetto viene generato per produrre pacchetti funzionanti su una specifica target platform J2EE, a scelta tra:
+      <ul>
+      <li>Weblogic Server 9.2</li>
+      <li>Jboss 4.3 EAP</li>
+      </ul>
+      </p>
+      <p>
+      Per ciascun componente &egrave; possibile definire uno o pi&ugrave; definizioni di servizio, ciascuna delle quali &egrave; caratterizzata da:
+      <ul>
+      <li>Un codice servizio, così come verrà classificato nel repository dei servizi</li>
+      <li>Una versione dell’interfaccia (in formato major.minor)</li>
+      <li>La tipologia di servizio, da scegliere tra Applicativo, Orchestrato, Infrastrutturale</li>
+      <li>Un insieme di tipi user defined (entit&agrave;, array tipati contenenti entit&agrave; user defined, ed eccezioni)</li>
+      <li>Un insieme di operazioni esposte dall’interfaccia del servizio, che possono utilizzare come parametri o valori di ritorno un tipo base csi
+      o un tipo user defined (entity)</li>
+      <li>Eventuali regole di autorizzazione all’utilizzo delle varie operazioni, secondo quanto specificato nel documento "Linee guida per la 
+      sicurezza nella cooperazione applicativa" <a href="http://dsp.csi.it/dsp/opencms/dsp/it/piattaforme/componenti/Librerie/CSI/sicurezza_coop.doc">(v.)</a>.
+      </ul>
+      </p>
+      <p>
+      Il componente, oltre a definire un certo numero di servizi, li espone (<i>provides</i>) affinchè possano essere fruiti da sistemi 
+      utilizzatori. Questa esposizione è effettuata tramite uno o più <b>binding</b>, che possono essere di tre tipi:
+      <ol>
+      <li><b>Binding PA EJB</b>: &egrave; il binding classico, sempre presente, rappresentato da una Porta Applicativa CSI basata su tecnologia EJB e 
+      interazione RMI con il fruitore;</li>
+      <li><b>Binding Bridge di PA SOAP</b>: &egrave; un binding opzionale che permette la fruizione del servizio da parte di un sistema 
+      (non necessariamente java) dotato di porta delegata soap;</li>
+      <li><b>Binding front-adapter web-services</b>: &egrave; un binding opzionale che permette la fruizione del servizio a tutti quei sistemi che non
+      possono utilizzare una porta delegata ma che sono in grado di instaurare una comunicazione web-services rpc soap/http.</li>
+	  </ol>
+	  </p>
+	  <p>
+	  A fronte di una applicazione logicamente definita secondo il modello appena esposto, il generatore di applicazione CSI genera:
+	  <ul>
+	  <li>Per ogni componente:
+	    <ul>
+	    <li>Un progetto SVN standard dotato di build ant e contenente tutti gli artifact che realizzano tutti i servizi definiti ed esposti in quel componente.
+	        Il risultato finale del build sarà un EAR contenente:
+	      <ul>
+	      <li>Un ejb-jar per ogni binding paejb</li>
+          <li>Un war per ogni bridge soap</li>
+	      <li>Un war per ogni front adapter web-services</li>
+          <li>Il frammento di configurazione log4j da inserire nella configurazione del server, contenente:
+            <ul>
+            <li>Le configurazioni per il log applicativo</li>
+			<li>Le configurazioni per lo stopwatch</li>
+		    <li>Le configurazioni per coop-trace, se il componente contiene almeno un servizio coop-trace enabled (default)</li>
+            </ul>
+		  </li>
+          </ul>
+        </li>
+		</ul>
+	  </li>
+	  <li>Per ogni definizione di servizio all’interno di ciascun componente:
+	    <ul>
+	    <li>L’interfaccia CSI del servizio</li>
+		<li>Le classi java corrispondenti alle entità e alle eccezioni user-defined</li>
+		<li>Le classi che implementano il servizio come Stateless Session EJB</li>
+		<li>Nel caso dei servizi orchestrati gli scheletri dei descrittori XML svcflow dei flussi relativi a ciascuna operazione</li>
+		<li>Il build che costruisce i pacchetti interni relativi ai singoli binding e la distribuzione delle librerie client dell’interfaccia del 
+		servizio; nel caso di binding ejb, se il servizio &egrave; coop-trace enabled, i file conterranno anche le configurazioni dei pluggable 
+		function handler appositi .
+		</li>
+		<li>I file di porta delegata (a scopo di test o da distribuire ai fruitori - ejb sempre, soap solo se presente il relativo binding) – 
+		nel caso in cui il servizio sia coop-trace enabled, i file conterranno anche le configurazioni dei pluggable function handler appositi.
+		</li>
+		<li>Un abbozzo di test Junit per ciascun servizio</li>
+		<li>Un build specifico utile per generare gli stub axis relativi ai front-adapter web-services (se presenti) - a scopo di test</li>
+        </ul>
+	  </li>
+	  </ul>
+	</p>
+	<p>
+	Lo scenario di utilizzo dello strumento prevede quindi la generazione <i>model driven</i> con round-trip dei servizi: definendo incrementalmente
+	il modello dell’applicazione (secondo il metamodello sepcifico di SERVICEGEN) &egrave; possibile generare una applicazione completa CSI che 
+	pu&ograve; evolvere nel tempo con round trip monodirezionale modello->codice. 
+    </p>
+    <p>
+    Compito dello sviluppatore &egrave; quello di arricchire il codice generato inserendo manualmente nelle apposite <i>regioni protette</i> 
+    il codice che implementa il servizio.
+    </p>  
+    <p>
+    Nel caso si utilizzi SERVICEGEN per realizzare servizi di orchestrazione &egrave; possibile modellare
+    l'orchestrazione, definendo:
+    <ul>
+    <li>L'insieme dei servizi orchestrati (ovvero acceduti dall'orchestrazione), definiti come 
+    elementi di un <i>ResourceSet</i></li>
+    <li>La sequenza degli step (<i>nodes</i>) che costituiscono l'orchestrazione, che possono essere:
+    	<ul>
+    	<li>Nodo di start: nodo iniziale che marca l'inizio dell'orchestrazione e inserisce
+    		in uno o più <i>DataSlot </i>i valori di ciascun parametro di input del metodo di orchestrazione
+    	</li>
+    	<li>Nodo di stop: nodo finale che marca il termine dell'orchestrazione e permette di restituire come
+    		output del metodo di orchestrazione il valore contenuto in un particolare <i>DataSlot</i></li>
+    	<li>Nodo di trasformazione: nodo che permette di effettuare trasformazioni di valori
+    		contenuti nel contesto di esecuzione (a partire da uno o pi&ugrave; <i>DataSlot</i> e memorizzando il risultato in un <i>DataSlot</i>)</li>
+    	<li>Nodo di richiamo di un servizio PDPA: 
+    		<ul>
+    		<li>per accedere ad un particolare metodo di uno dei servizi
+    			dichiarati nel ResourceSet</li>
+    		<li>valorizzando i parametri con il valore di uno o più <i>DataSlot</i></li>
+    		<li>memorizzando l'eventuale valore di ritorno in un <i>DataSlot</i></li>
+    		<li>eseguendo una sottosequenza di step in caso di eccezione (<i>ExceptionHandler</i>)</li>	
+    		</ul>
+    	</li>
+    	<li>Nodo di Loop (<i>ForEach</i>) per ciclare all'interno di una collection contenuta in un <i>DataSlot</i>, ed eseguire una sottosequenza di step</li>
+    	<li>Nodo di branch condizionale, per eseguire una tra due possibili sottosequenze di step a fronte del
+    	risultato di una condizione logica</li>	
+    	</ul>
+    </li>
+    </ul>
+    Nel caso dei servizi di orchestrazione il generatore si preoccupa anche di gestire automaticamente:
+    <ul>
+    <li>la creazione dei file di configurazione delle PD dei servizi acceduti</li>
+    <li>la risoluzione delle dipendenze rispetto alle librerie client dei servizi acceduti</li>
+    </ul>
+    </body>
+	</html>

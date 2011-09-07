@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <title>Servicegen - Strutturazione dei vari modelli del servizio</title>
+   </head>
+
+   <body>
+      <h2>
+         Servicegen - Strutturazione dei vari modelli del servizio
+      </h2>
+      <p>
+      La descrizione di un servizio <b>servicegen</b> &egrave; strutturata in differenti modelli ciascuno dei quali descrive
+      una porzione delle caratteristiche del servizio stesso. 
+      Ci&ograve; permette di gestire in modo più efficente e strutturato il modello complessivo, anche in caso
+      di lavoro in team.
+      </p>
+      <h3>Struttura complessiva dei modelli e delle dipendenze</h3>
+      <p>
+      Nell'immagine seguente &egrave; mostrata la struttura delle dipendenze tra i vari sotto-modelli di cui &egrave;
+      composto il modello che descrive un servizio <b>servicegen</b>:
+      </p>
+      <img src="img/models_structure.jpg" alt="struttura modelli servicegen" border="1">
+      <p>
+      Nel disegno:
+      <ul>
+		  <li>ciascuna classe corrisponde ad un differente file di modello:
+		  <ul>
+		  	<li>il modello principale(nell'es: [<i>root model</i>]) contiene un istanza di <b>SOABEModel</b></li>
+		  	<li>il modello delle risorse utilizzate nell'orchestrazione (es: connettori a servizi; nell' es.: [<i>appResources</i>]</li>
+		  	<li>un modello per ciascun servizio definito e esposto dal componente (nell'es: [<i>ServiceDef_1</i>]) </li>
+		  	<li>nel caso di servizi di orchestrazione:
+		  	  <ul>
+		  	  <li>un modello per ciascuna operazione prevista dall'interfaccia e contenente la struttura del flusso di
+		  	  orchestrazione relativa a quell'operazione (nell'es: [<i>Orchestration_1_1</i>]) </li>
+		  	  </ul>
+		  	  <li>un modello relativo all'interfaccia di servizio di ciascun servizio utilizzato nell'orchestrazione.
+		  	  </li>
+		  	</li>
+		  	</ul>
+		  </li>
+  		  <li>ciascuna dipendenza tra due classi corrisponde ad una dipendenza tra due file di modello, che si realizza
+  		  in <b>EMF</b>:
+  		  <ul>
+  		  	<li>mediante l'inclusione del modello da cui si dipende nel modello che presenta la dipendenza tramite
+  		  	il comando "load resource..." nell'editor strutturato</li>
+  		  	<li>referenziando (dove necessario) un oggetto appartenente al modello incluso in una property di 
+  		  	    un oggetto appartenente al modello che include </li>
+  		  </ul>
+  		  <li>i modelli rappresentati con il colore giallo sono modelli specifici dell'applicativo, mentre i modelli
+  		  rappresentati in grigio sono da considerarsi librerie da includere nel progetto</li> 
+	  </ul>	
+
+      </p>
+      
+      
+      <h3>Alberatura dei file di modello</h3>
+      
+ 	[[TODO]]
+       
+      
+      
+   </body>
+</html>

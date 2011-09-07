@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Developer documentation for the model class CSIDatatype</title>
+	</head><body>
+<h1>Class "typedef :: CSIDatatype"</h1>
+<p>Defined in package : <img src="../../icons/ecore/EPackage.gif" /><a href="../../typedef/package.html">typedef</a></p>
+<p>Tipo base previsto dall'infrastruttura di cooperazione CSI.
+Normalmente un insieme di tipi predefiniti è incluso come risorsa nei vari
+modelli (definizione servizi, orchestrazioni, ...) e dunque in ogni insieme
+di risorse (modelli) interconnesse è opportuno che vi sia una sola istanza
+di <b>CSIDatatype</b> per ogni tipo semplice previsto.</p>
+
+
+
+
+<p>Super and Sub Types</p>
+
+<ul><li><img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../typedef/classes/Type.html">typedef :: Type</a>
+
+<ul><li><b><img src="../icons/ecore/EClass.gif" />typedef :: CSIDatatype</b>
+
+</li></ul>
+
+</li></ul>
+
+
+
+
+
+<table border="1">
+
+
+<tr style="vertical-align:top">
+
+
+<td>
+<p>Direct Attributes</p>
+<ul>
+	<li><img src="../../icons/ecore/EEnum.gif" /><a href="../../typedef/datatypes/CSIDatatypeCodes.html">typedef :: CSIDatatypeCodes</a> <img src="../icons/ecore/EAttribute.gif" /><a href="../../typedef/classes/CSIDatatype.html#at_code">code</a></li>
+	<li><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EBoolean.html">ecore :: EBoolean</a> <img src="../icons/ecore/EAttribute.gif" /><a href="../../typedef/classes/CSIDatatype.html#at_nillable">nillable</a></li>
+</ul>
+
+</td>
+
+
+
+
+<td>
+
+</td>
+
+
+
+
+
+</tr>
+
+
+
+
+<tr style="vertical-align:top">
+
+
+<td>
+<p>Inherited Attributes</p>
+<ul>
+	<li><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EString.html">ecore :: EString</a> <img src="../icons/ecore/EAttribute.gif" /><a href="../../typedef/classes/Type.html#at_name">name</a></li>
+</ul>
+
+</td>
+
+
+
+
+<td>
+<p>Inherited References</p>
+<ul>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../typedef/classes/TypeAnnotation.html">typedef :: TypeAnnotation</a> <img src="../icons/ecore/EReference.gif" /><a href="../../typedef/classes/Type.html#re_annotations">annotations</a></li>
+</ul>
+
+</td>
+
+
+
+
+
+</tr>
+
+
+</table>
+
+
+<h2><a name="at_code" /><img src="../icons/ecore/EAttribute.gif" />Attribute typedef :: CSIDatatypeCodes code</h2>
+<p>Codice che determina il reale tipo. Vedere la documentazione della 
+enumeration <b>CSIDatatypeCodes</b> perl'elenco dei tipi supportati.<br /></p>
+
+
+
+<table border="1">
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td><img src="../../icons/ecore/EEnum.gif" /><a href="../../typedef/datatypes/CSIDatatypeCodes.html">typedef :: CSIDatatypeCodes</a></td></tr>
+
+<tr><td>changeable</td><td>true</td></tr>
+
+
+<tr><td>defaultValueLiteral</td><td>null</td></tr>
+
+
+<tr><td>derived</td><td>false</td></tr>
+
+
+<tr><td>iD</td><td>false</td></tr>
+
+
+<tr><td>lowerBound</td><td>0</td></tr>
+
+
+<tr><td>name</td><td>code</td></tr>
+
+
+<tr><td>ordered</td><td>true</td></tr>
+
+
+<tr><td>transient</td><td>false</td></tr>
+
+
+<tr><td>unique</td><td>true</td></tr>
+
+
+<tr><td>unsettable</td><td>false</td></tr>
+
+
+<tr><td>upperBound</td><td>1</td></tr>
+
+
+<tr><td>volatile</td><td>false</td></tr>
+
+
+</tbody>
+</table>
+
+<h2><a name="at_nillable" /><img src="../icons/ecore/EAttribute.gif" />Attribute ecore :: EBoolean nillable</h2>
+<p>Qualificatore di tipo che defiisce se il tipo è un tipo che può assumere valore
+nullo oppure no.
+Es: 
+<ul>
+<li> code==CSIInteger & nillable == false: tipo intero non annullabile (es. java int)
+<li> code==CSIInteger & nillable == true: tipo intero annullabile (es. java Integer)
+</ul></p>
+
+
+
+<table border="1">
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EBoolean.html">ecore :: EBoolean</a></td></tr>
+
+<tr><td>changeable</td><td>true</td></tr>
+
+
+<tr><td>defaultValueLiteral</td><td>null</td></tr>
+
+
+<tr><td>derived</td><td>false</td></tr>
+
+
+<tr><td>iD</td><td>false</td></tr>
+
+
+<tr><td>lowerBound</td><td>0</td></tr>
+
+
+<tr><td>name</td><td>nillable</td></tr>
+
+
+<tr><td>ordered</td><td>true</td></tr>
+
+
+<tr><td>transient</td><td>false</td></tr>
+
+
+<tr><td>unique</td><td>true</td></tr>
+
+
+<tr><td>unsettable</td><td>false</td></tr>
+
+
+<tr><td>upperBound</td><td>1</td></tr>
+
+
+<tr><td>volatile</td><td>false</td></tr>
+
+
+</tbody>
+</table>
+
+
+
+
+<div>generated on 6-set-2010 at 10.52.07 by <a href="http://metamodeldoc.randomice.net">metamodeldoc</a></div></body></html>
