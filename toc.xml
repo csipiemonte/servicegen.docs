@@ -12,6 +12,8 @@
        </topic>
        <topic href="html/servicegen/tutorials/sampleorch/sampleorch.html" label="Tutorial: esempio di servizio di orchestrazione">
        </topic>
+       <topic href="html/servicegen/tutorials/integrazioneServicegenDatagen/integ_spring_servicegen_datagen.html" label="Tutorial: integrazione Service Datagen">
+       </topic>
     </topic>
     <topic href="html/servicegen/mm_reference.html" label="Guida di riferimento metamodello">
     </topic>

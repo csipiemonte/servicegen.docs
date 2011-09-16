@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+
+<h2>INTEGRAZIONE TRA MODULO DATAGEN E MODULO SERVICEGEN : configurazione del contesto Spring</h2>
+
+
+<body>
+<p>
+Uno scenario molto diffuso delle applicazioni J2EE generate tramite i tools MDD Servicegen e Datagen pu&ograve;
+essere quello di avere un servizio applicativo (generato con il primo tool) che debba richiamare 
+un dao (generato con il secondo tool).
+Per fissare le idee, pensiamo al seguente esempio:
+<br></br>
+
+<ul>
+<li>il servizio deve effettuare un accesso ad una base dati, utilizzando un dao (Dao1) generato via Datagen.</li>
+<li>il servizio deve richiamare un componente custom che contenga i riferimenti ai dao generati via Datagen</li>
+</ul>  
+<br></br>
+</p>
+<br></br>
+<img border="0" src="img/architettura.jpg"/>
+
+<h3>
+Modellazione Servicegen
+</h3>
+<p>
+Supponiamo di voler creare un servizio applicativo con implementazione manuale.<br></br>
+Dopo aver definito nel ServiceDef le operazioni offerte dal servizio, si puo definire nel modello principale(SOABEModel)
+l'implementazione, attraverso l'attributo ServiceImpl collegato al rispettivo ServiceDef, a cui si aggiunge, oltre il ResourceSet, anche la cartuccia.
+Scegliamo come cartuccia: ManualImplCartridge e settiamo la property UseInjectedPojo a true.<br></br>
+Tale opzione ci permette di generare direttamente un contesto Spring dove sar&agrave; definito il bean Spring della classe di implementazione
+del Service1.<br></br> 
+Il seguente esempio (fig.1) mostra un modello Servicegen in cui viene dichiarato un servizio applicativo con una sola operazione, sayHello(), con eventuali parametri di input e validazione degli stessi.
+<br></br>
+<img border="0" src="img/fig1.jpg"/>					
+<br></br>
+</p>
+
+<h3>					
+Modellazione Datagen
+</h3>
+<p>
+Supponiamo ora che i servizi definiti nel modulo ServiceGen debbano effettuare un accesso ad una base dati.<br></br>
+Il primo servizio, ad esempio, deve sfruttare un dao generato via Datagen e il secondo servizio, invece, un dao implementato manualmente
+dall'utente, ossia un dao customizzato.
+Il modulo Datagen che genera il primo dao pu&ograve; essere quello di (fig2):
+<br></br>
+
+<img border="0" src="img/fig2.jpg"/>	
+					
+					
+<br></br>					
+Il bean custom pu&ograve; essere definito come un qualsiasi bean di Spring (una classe Java (POJO)) che contiene tipicamente i metodi necessari
+per implementare la specifica business logic. Tale bean referenzia (ovvero utilizza operativamente nella sua classe) i bean dei dao generati con Datagen. Ovviamente
+&egrave; possibile anche che il bean custom (che possiamo a buona ragione vedere come un manager del servizio come indicato in figura) abbia referenze ad eventuali
+altri bean definiti manualmente dall'utente. 
+</p>
+
+<h3>
+Impostazioni di workflow e osservazioni sul codice generato.
+</h3>
+<p>
+Una volta costruito il modello, &egrave; necessario impostare le direttive di generazione nel file di workflow.<br></br>
+Il nostro scopo non &egrave; solamente quello di generare l'applicazione globale, comprensiva cio&egrave; sia del modulo Servicegen e del modulo
+Datagen, ma anche far in modo che tale applicazione possa avere un contesto Spring attraverso il quale le varie componenti di cui abbiamo discusso in
+precedenza possano essere tra loro referenziate.<br/>
+In tale file, a parte ovviamente le cartucce di validazione, vi sono quelle di generazione, ed in particolare, al fine di integrare via Spring
+il codice generato da Datagen nel codice generato da Servicegen &egrave; necessario inidcare correttamente:
+<br></br> 
+</p>
+<ul> 
+<li>la property "daoBeansFileName" nella cartuccia Datagen (vedremo subito come).</li>
+<li>impostare a true la property "useExternalDao" nella cartuccia Servicegen</li>
+<li>impostare il basePackage indicando il nome prodotto e nome componente utilizzati nel modulo Servicegen</li> 
+</ul>
+<br/>
+
+La property "daoBeansFileName" deve essere impostata nella seguente maniera:
+<br></br>
+daoBeansFileName="ejb/conf/codice_servizio/META-INF/codice_servizio-beans.xml"
+<br></br>
+
+dove codice_servizio coincide con quello utilizzato nel modulo Servicegen (il ragionamento si estende anche nel caso di due o pi&ugrave; dao)<br/>
+Siccome questi file xml sono stati generati con Datagen, essi conterranno pertanto la definizione dei bean che istanziano i dao cos&igrave; generati,
+e potranno pertanto essere referenziati nel custom bean.
+Un progetto generatore "hello.project" ed il relativo progetto generato "hello_gen" sono disponibili in formato zip a questo <a href="project_hello/Hello_project.zip" target="_blank" >link</a> .
+ 
+</body>
+</html>
+
+					
+
+
+
+
+ 
