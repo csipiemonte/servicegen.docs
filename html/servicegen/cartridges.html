@@ -182,6 +182,52 @@
 </pre>    
 	  </p>
 
+<h3>Properties supportate</h3>
+<p>Il generatore <b>SERVICEGEN</b> supporta le seguenti properties (che devono essere inserite nel file 
+<i>workflow.properties</i>.
+<table border="1">
+	  <thead style="background:silver"><tr>
+	  <td>property</td>
+	  <td>descrizione</td>
+	  <td>esempio</td>
+	  <td>cartuccia</td>
+	  </tr></thead>
+	  <tbody>
+	  
+	  <tr>
+	  <td><code>javapackage-organization-name</code></td>
+	  <td>
+	  	<ul>
+	  	<li>scopo: serve per impostare un differente prefisso per i package java.
+	  	se non impostato il prefisso di default &egrave; quello standard CSIPiemonte, ovvero
+	  	<i>it.csi</i>.
+	  	</li>
+   		<li>default: null</li>
+	  	</ul>
+	  </td>
+	  <td><code>com.acme</code></td>
+	  <td>
+	  	<i>csi14.oaw</i></td>
+	  </tr>
+	  <tr>
+	  <td><code>servicegen.ivyRepositoryHost</code></td>
+	  <td>
+	  	<ul>
+	  	<li>scopo: serve per impostare un differente host come repository per ivy.
+	  	Se non impostato l'host di default &egrave; quello standard CSIPiemonte, ovvero
+	  	<i>repart.csi.it</i>.
+	  	</li>
+   		<li>default: null</li>
+	  	</ul>
+	  </td>
+	  <td><code>myrepository.acme.com</code></td>
+	  <td>
+	  	<i>csi14.oaw</i></td>
+	  </tr>
+	  
+	  </tbody>
+</table>
+</p>
 
    </body>
 </html>
