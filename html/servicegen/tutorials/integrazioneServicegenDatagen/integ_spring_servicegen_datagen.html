@@ -138,8 +138,21 @@ per implementare la specifica business logic. Ciascuno di tali bean, al fine di 
 altri bean definiti manualmente dall'utente. 
 </p>
 
-Un progetto generatore "hello.project" ed il relativo progetto generato "hello_gen" sono disponibili in formato zip a questo <a href="project_hello/Hello_project.zip" target="_blank" >link</a> .
- 
+<h3>Passo 4: costruzione delle dipendenze spring</h3>
+<p>Il collante tra <i>bean di implementazione</i>, <i>manager</i>, <i>dao</i> &egrave; spring. Per costruire la struttura
+descritta in fig. 1 &egrave; necessario:
+<ul>
+<li>definire nel <i>bean di implementazione</i> le property destinate a contenere i riferimenti ai bean
+<i>manager</i> e <i>dao</i></li>
+<li>definire nei <i>bean manager</i> le property destinate a contenere i riferimenti ai bean
+<i>dao</i> necessari</li>
+<li>completare i file di configurazione di spring in modo da costruire il grafo di dipendenze tra i vari bean.</li>
+</ul>
+</p>
+
+<h3>Progetto di esempio </h3>
+<p>Un progetto generatore "hello.project" ed il relativo progetto generato "hello_gen" sono disponibili in formato zip a questo <a href="project_hello/Hello_project.zip" target="_blank" >link</a> .
+ </p>
 </body>
 </html>
 
