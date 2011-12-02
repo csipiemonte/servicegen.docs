@@ -8,13 +8,17 @@
       <h2>
          Servicegen - overview
       </h2>
-      <p>versione: 1.1.2</p>
+      <p>versione: 1.2.0</p>
       <p>
-      <b>SERVICEGEN</b> è uno strumento di generazione di codice specifico per la generazione
-      di interi progetti software che realizzano uno o più servizi secondo il paradigma SOA. Attualmente la tecnologia
-      target è rappresentata dallo stack J2EE arricchito con le librerie di cooperazione applicativa C.S.I. 
-      Lo strumento permette di definire uno o più servizi realizzati all'interno di un componente di prodotto, secondo gli standard di
-      sviluppo e le linee guida vigenti in <i>CSIPIEMONTE</i>.
+      <b>SERVICEGEN</b> è uno strumento di generazione di codice specifico per la produzione
+      di interi progetti software che realizzano uno o più servizi secondo il paradigma SOA. 
+      Attualmente sono supportate due tecnologie target:
+      <ul>
+      <li>stack J2EE arricchito con le librerie di cooperazione applicativa C.S.I</li>
+      <li>stack J2EE arricchito con il framework per web services CXF</li>
+      </ul>
+      Lo strumento permette di definire uno o più servizi realizzati all'interno di un componente di prodotto, 
+      secondo gli standard di sviluppo e le linee guida vigenti in <i>CSIPIEMONTE</i>.
       </p>
       Il modello che descrive l'applicazione &egrave;:
       <ul>
@@ -22,7 +26,8 @@
       <li>strutturato in un insieme di modelli come descritto in dettaglio in <a href="models_structure.html">[Models structure]</a>;</li>
       </ul>  
       <p> 
-      Il progetto viene generato per produrre pacchetti funzionanti su una specifica target platform J2EE, a scelta tra:
+      Per ciascuna delle due modalit&agrave; (C.S.I vs CXF) il progetto viene generato per produrre pacchetti funzionanti 
+      su una specifica target platform J2EE, a scelta tra:
       <ul>
       <li>Weblogic Server 9.2</li>
       <li>Jboss 4.3 EAP</li>
@@ -31,9 +36,9 @@
       <p>
       Per ciascun componente &egrave; possibile definire uno o pi&ugrave; definizioni di servizio, ciascuna delle quali &egrave; caratterizzata da:
       <ul>
-      <li>Un codice servizio, così come verrà classificato nel repository dei servizi</li>
-      <li>Una versione dell’interfaccia (in formato major.minor)</li>
-      <li>La tipologia di servizio, da scegliere tra Applicativo, Orchestrato, Infrastrutturale</li>
+      <li>Un codice servizio, cos&igrave; come verr&egrave; classificato nel repository dei servizi</li>
+      <li>Una versione dell’interfaccia (in formato <i>major.minor</i>)</li>
+      <li>La tipologia di servizio, da scegliere tra Applicativo, di Orchestrazione, Infrastrutturale</li>
       <li>Un insieme di tipi user defined (entit&agrave;, array tipati contenenti entit&agrave; user defined, ed eccezioni)</li>
       <li>Un insieme di operazioni esposte dall’interfaccia del servizio, che possono utilizzare come parametri o valori di ritorno un tipo base csi
       o un tipo user defined (entity)</li>
@@ -42,24 +47,37 @@
       </ul>
       </p>
       <p>
-      Il componente, oltre a definire un certo numero di servizi, li espone (<i>provides</i>) affinchè possano essere fruiti da sistemi 
-      utilizzatori. Questa esposizione è effettuata tramite uno o più <b>binding</b>, che possono essere di tre tipi:
-      <ol>
-      <li><b>Binding PA EJB</b>: &egrave; il binding classico, sempre presente, rappresentato da una Porta Applicativa CSI basata su tecnologia EJB e 
-      interazione RMI con il fruitore;</li>
-      <li><b>Binding Bridge di PA SOAP</b>: &egrave; un binding opzionale che permette la fruizione del servizio da parte di un sistema 
-      (non necessariamente java) dotato di porta delegata soap;</li>
-      <li><b>Binding front-adapter web-services</b>: &egrave; un binding opzionale che permette la fruizione del servizio a tutti quei sistemi che non
-      possono utilizzare una porta delegata ma che sono in grado di instaurare una comunicazione web-services rpc soap/http.</li>
+      Il componente, oltre a definire un certo numero di servizi, li espone (<i>provides</i>) affinch&egrave; possano 
+      essere fruiti da sistemi utilizzatori. Questa esposizione &egrave; effettuata tramite uno o pi&ugrave; <b>binding</b>, 
+      che possono essere di quattro tipi (tre per la modalit&agrave; C.S.I e uno per la modalit&agrave; CXF):
+	  <ol>
+	  <li>Modalit&agrave; C.S.I
+	      <ol>
+	      <li><b>Binding PA EJB</b>: &egrave; il binding classico, sempre presente, rappresentato da una Porta Applicativa CSI basata su tecnologia EJB e 
+	      interazione RMI con il fruitore;</li>
+	      <li><b>Binding Bridge di PA SOAP</b>: &egrave; un binding opzionale che permette la fruizione del servizio da parte di un sistema 
+	      (non necessariamente java) dotato di porta delegata soap;</li>
+	      <li><b>Binding front-adapter web-services</b>: &egrave; un binding opzionale che permette la fruizione del servizio a tutti quei sistemi che non
+	      possono utilizzare una porta delegata ma che sono in grado di instaurare una comunicazione web-services rpc soap/http.</li>
+		  </ol>
+	  </li>
+	  <li>Modalit&agrave; CXF
+	      <ol>
+	      <li><b>Binding WS</b>: &egrave; il binding classico per i web services <i>soap/http</i>;</li>
+		  </ol>
+	  </li>
 	  </ol>
 	  </p>
 	  <p>
-	  A fronte di una applicazione logicamente definita secondo il modello appena esposto, il generatore di applicazione CSI genera:
+	  A fronte di una applicazione logicamente definita secondo il modello appena esposto, il generatore di applicazione 
+	  genera progetti di forma differente a seconda che si utilizzi la cartuccia di generazione per C.S.I o per CXF.
+	  
+	  <h3>generazione di servizi in modalit&agrave; C.S.I</h3>
 	  <ul>
-	  <li>Per ogni componente:
+	  <li>Per ogni componente viene generato:
 	    <ul>
 	    <li>Un progetto SVN standard dotato di build ant e contenente tutti gli artifact che realizzano tutti i servizi definiti ed esposti in quel componente.
-	        Il risultato finale del build sarà un EAR contenente:
+	        Il risultato finale del build sar&agrave; un EAR contenente:
 	      <ul>
 	      <li>Un ejb-jar per ogni binding paejb</li>
           <li>Un war per ogni bridge soap</li>
@@ -78,7 +96,7 @@
 	  <li>Per ogni definizione di servizio all’interno di ciascun componente:
 	    <ul>
 	    <li>L’interfaccia CSI del servizio</li>
-		<li>Le classi java corrispondenti alle entità e alle eccezioni user-defined</li>
+		<li>Le classi java corrispondenti alle entit&agrave; e alle eccezioni user-defined</li>
 		<li>Le classi che implementano il servizio come Stateless Session EJB</li>
 		<li>Nel caso dei servizi orchestrati gli scheletri dei descrittori XML svcflow dei flussi relativi a ciascuna operazione</li>
 		<li>Il build che costruisce i pacchetti interni relativi ai singoli binding e la distribuzione delle librerie client dell’interfaccia del 
@@ -93,11 +111,44 @@
         </ul>
 	  </li>
 	  </ul>
+	  
+	  <h3>generazione di servizi in modalit&agrave; CXF</h3>
+	  <ul>
+	  <li>Per ogni componente viene generato:
+	    <ul>
+	    <li>Un progetto SVN standard dotato di build ant e contenente tutti gli artifact che realizzano tutti i servizi definiti ed esposti in quel componente.
+	        Il risultato finale del build sar&agrave; un EAR contenente:
+	      <ul>
+          <li>Un war per ogni servizio esposto</li>
+          <li>Il frammento di configurazione log4j da inserire nella configurazione del server, contenente:
+            <ul>
+            <li>Le configurazioni per il log applicativo</li>
+			<li>Le configurazioni per lo stopwatch</li>
+            </ul>
+		  </li>
+          </ul>
+        </li>
+		</ul>
+	  </li>
+	  <li>Per ogni definizione di servizio all’interno di ciascun componente:
+	    <ul>
+	    <li>L’interfaccia jax-ws compliant del servizio</li>
+		<li>Le classi java corrispondenti alle entit&agrave; e alle eccezioni user-defined</li>
+		<li>Le classi che implementano il servizio come <i>bean Spring</i></li>
+		<li>Nel caso dei servizi orchestrati gli scheletri dei descrittori XML svcflow dei flussi relativi a ciascuna operazione</li>
+		<li>Il build che costruisce i pacchetti interni relativi ai singoli binding e la distribuzione delle librerie client 
+		dell’interfaccia del servizio;
+		</li>
+		<li>Un abbozzo di test Junit per ciascun servizio</li>
+        </ul>
+	  </li>
+	  </ul>
 	</p>
+	
 	<p>
 	Lo scenario di utilizzo dello strumento prevede quindi la generazione <i>model driven</i> con round-trip dei servizi: definendo incrementalmente
-	il modello dell’applicazione (secondo il metamodello sepcifico di SERVICEGEN) &egrave; possibile generare una applicazione completa CSI che 
-	pu&ograve; evolvere nel tempo con round trip monodirezionale modello->codice. 
+	il modello dell’applicazione (secondo il metamodello sepcifico di SERVICEGEN) &egrave; possibile generare una applicazione 
+	completa che pu&ograve; evolvere nel tempo con round trip monodirezionale modello->codice. 
     </p>
     <p>
     Compito dello sviluppatore &egrave; quello di arricchire il codice generato inserendo manualmente nelle apposite <i>regioni protette</i> 
@@ -138,5 +189,64 @@
     <li>la creazione dei file di configurazione delle PD dei servizi acceduti</li>
     <li>la risoluzione delle dipendenze rispetto alle librerie client dei servizi acceduti</li>
     </ul>
+    <h3>Cosa cambia a livello di utilizzo nelle due modalit&agrave;</h3>
+    <p>Le due modalit&agrave; di realizzazione dei servizi (C.S.I vs CXF) comportano differenze a livello di modellazione,
+    istruzioni di generazione ed implementazione del codice custom.
+    Di seguito le principali differenze.
+    </p>
+    
+    <h4>differenze a livello di modellazione</h4>
+    <table border="1">
+    <thead><tr><td><b>aspetto</b></td><td><b>CSI</b></td><td><b>CXF</b></td><td><b>note</b></td></tr></thead>
+    <tbody>
+    <tr>
+    <td>libreria di tipi base</td>
+    <td><code>basetypes.servicegen</code>: libreria dei tipi base previsti dal framework di cooperazione applicativa CSI</td>
+    <td><code>wsbasetypes.servicegen</code>: libreria dei tipi base previsti dallo standard web-services</td>
+    <td>le due modalit&agrave; operano su typeset differenti: tutto ci&ograve; che fa riferimento a tipi deve adeguarsi 
+    al typeset adeguato alla modalit&agrave; (nella definizione di parametri e valori di ritorno)</td>
+    </tr>
+    <tr>
+    <td>binding</td>
+    <td>sono supportati i binding <i>ejbpa</i>, <i>pabr</i>, <i>wsfad</i></td>
+    <td>&egrave; supportato il solo binding di tipo <i>ws</i></td>
+    <td>La modalit&agrave; CSI non è una modalit&agrave; standard web services di conseguenza gli insiemi
+    dei binding supportati dalle due modalit&agrave; sono disgiunti</td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <h4>differenze a livello di generazione</h4>
+    <table border="1">
+    <thead><tr><td><b>aspetto</b></td><td><b>CSI</b></td><td><b>CXF</b></td><td><b>note</b></td></tr></thead>
+    <tbody>
+    <tr>
+    <td>cartuccia</td>
+    <td><code>it/csi/mddtools/servicegen/workflow/csi14.oaw</code></td>
+    <td><code>it/csi/mddtools/servicegen/cxf/cxf.oaw</code></td>
+    <td></td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <h3>Limitazioni</h3>
+    <p>Allo stato attuale sono presenti le seguenti limitazioni:
+    <ul>
+    <li>Limitazioni generali
+    	<ol>
+    	<li>Non &egrave; possibile definire nello stesso componente due servizi di cui uno sia realizzato
+    	in modalit&agrave; C.S.I ed un altro in modalit&agrave; CXF</li>
+    	</ol>
+    </li>
+    <li>Limitazioni sui Servizi CXF
+    	<ol>
+    	<li>Non &egrave; supportata la securizzazione dei servizi dal punto di vista dell'
+    	autenticazione/autorizzazione (ovvero &egrave; supportato solo il livello <i>A0</i>)
+    	</li>
+    	<li>Non sono previste le funzioni di <i>monitoraggio</i>, <i>diagnostica</i>, <i>tracing</i></li>
+    	</ol>
+    </li>
+    </ul>
+    </p>
     </body>
 	</html>
