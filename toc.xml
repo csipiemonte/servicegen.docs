@@ -20,6 +20,10 @@
     <topic href="html/servicegen/models_structure.html" label="Struttura e dipendenza dei modelli">
     </topic>
     <topic href="html/servicegen/cartridges.html" label="Cartridges">
+       <topic href="html/servicegen/cartridges/cartridges_csi.html" label="Cartridges C.S.I">
+       </topic>
+       <topic href="html/servicegen/cartridges/cartridges_cxf.html" label="Cartridges CXF">
+       </topic>
     </topic>
     <topic href="html/servicegen/faq.html" label="F.A.Q.">
     </topic>
