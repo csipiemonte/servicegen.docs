@@ -9,33 +9,33 @@
          Servicegen - Cartridges disponibili per la modalit&agrave; CXF
       </h2>
       <p>
-         In questo capitolo sono descritte le carucce (<i>cartridge</i>) di generazione disponibili 
+         In questo capitolo sono descritte le carucce (<i>cartridge</i>) di generazione disponibili
          per la modalit&agrave; CXF.
       </p>
-      
+
             <h3>cartuccia di setup</h3>
 	  <p>
 	  Prima di richiamare qualsiasi altra cartuccia &egrave; necessario effettuare il <i>setup</i>del
 	  sistema di generazione, richiamando la cartuccia
-	  <code>it/csi/mddtools/servicegen/cxf/workflow/setup.oaw</code>, che non prevede parametri.
-	  	  
+	  <code>it/csi/mddtools/servicegen/cxf/workflow/setup.mwe</code>, che non prevede parametri.
+
 	  </p>
-	  
+
 	  <p>
 	  Esempio:
 
-<pre>    
-<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/cxf/workflow/setup.oaw"</font>
+<pre>
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/cxf/workflow/setup.mwe"</font>
 <font color='#000080'>/&gt;</font><br>
 
-</pre>    
+</pre>
 	  </p>
-	  
+
       <h3>cartuccia di genrazione dello strato di back-end SOA</h3>
 	  <p>
 	  La generazione dello strato di back-end SOA si realizza mediante la cartuccia
-	  <code>it/csi/mddtools/servicegen/cxf/workflow/cxf.oaw</code>, che prevede i seguenti parametri:
-	  
+	  <code>it/csi/mddtools/servicegen/cxf/workflow/cxf.mwe</code>, che prevede i seguenti parametri:
+
 	  <table border="1">
 	  <thead style="background:silver"><tr><td>parametro</td><td>descrizione</td><td>esempio</td><td>obbl/opz</td></tr></thead>
 	  <tbody>
@@ -45,51 +45,51 @@
 	  <td><code>myprod.mdd/src/model/myprod/mycomp/myservice.servicegen</code></td>
 	  <td>obbl</td>
 	  </tr>
-	  
+
 	  <tr>
 	  <td>targetProjectName</td>
 	  <td>nome del progetto java in cui devono essere generati i sorgenti</td>
 	  <td><code>mycomp</code></td>
 	  <td>obbl</td>
 	  </tr>
-	  
+
 	  <tr>
 	  <td>useExternalDaoBeans</td>
-	  <td>(dalla v.1.1) se impostato a <i>true</i> non viene generato il file <i>dao-beans.xml</i>, 
-	  permettendo cos&igrave; di utilizzare il file generato da <i>datagen</i>. Il valore di 
+	  <td>(dalla v.1.1) se impostato a <i>true</i> non viene generato il file <i>dao-beans.xml</i>,
+	  permettendo cos&igrave; di utilizzare il file generato da <i>datagen</i>. Il valore di
 	  default &egrave;: <i>true</i>
 	  </td>
 	  <td><code>true</code></td>
 	  <td>opz</td>
 	  </tr>
-	  
+
 	  </tbody>
 	  </table>
-	  
+
 	  </p>
-	  
+
 	  <p>
 	  Esempio:
 
-<pre>    
-<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/cxf/workflow/cxf.oaw"</font>
+<pre>
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/cxf/workflow/cxf.mwe"</font>
   <font color='#000080'>model=</font><font color='#008000'>"myprod.mdd/src/model/myprod/mycomp/myservice.servicegen"</font>&nbsp;
   <font color='#000080'>targetProjectName=</font><font color='#008000'>"mycomp"</font>
 <font color='#000080'>/&gt;</font><br>
 
-</pre>    
+</pre>
 	  </p>
-	  
+
 	  <b>N.B</b>: &egrave; necessario verificare i singoli modelli componenti prima di richiamare
 	  questa cartuccia, utilizzando le apposite cartucce di test descritte di seguito.
-	  
+
 	  <h3>Cartuccia di check del modello di interfaccia di servizio (servicedef)</h3>
-	  
+
 	  <p>
 	  E'necessario verificare la validit&agrave; dei modelli di interfaccia di servizio referenziati
 	  nel modello principale. Per far ci&ograve; &egrave; disponibile la cartuccia
-	  <code>it/csi/mddtools/servicegen/cxf/workflow/checkServicedef.oaw</code>, che prevede i seguenti parametri:
-	  
+	  <code>it/csi/mddtools/servicegen/cxf/workflow/checkServicedef.mwe</code>, che prevede i seguenti parametri:
+
 	  <table border="1">
 	  <thead style="background:silver"><tr><td>parametro</td><td>descrizione</td><td>esempio</td><td>obbl/opz</td></tr></thead>
 	  <tbody>
@@ -99,30 +99,30 @@
 	  <td><code>myprod.mdd/src/model/myprod/mycomp/myserviceinterface.servicedef</code></td>
 	  <td>obbl</td>
 	  </tr>
-	  
+
 	  </tbody>
 	  </table>
-	  
+
 	  </p>
-	  
+
 	  <p>
 	  Esempio:
 
-<pre>    
-<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/cxf/workflow/checkServicedef.oaw"</font>
+<pre>
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/cxf/workflow/checkServicedef.mwe"</font>
   <font color='#000080'>model=</font><font color='#008000'>"myprod.mdd/src/model/myprod/mycomp/myserviceinterface.servicedef"</font>&nbsp;
 <font color='#000080'>/&gt;</font><br>
 
-</pre>    
+</pre>
 	  </p>
-	  
+
 	  <h3>Cartuccia di check del modello di orchestrazione (svcorch)</h3>
-	  
+
 	  <p>
 	  E'necessario verificare la validit&agrave; dei modelli di orchestrazione referenziati
 	  nel modello principale. Per far ci&ograve; &egrave; disponibile la cartuccia
-	  <code>it/csi/mddtools/servicegen/cxf/workflow/checkSvcOrch.oaw</code>, che prevede i seguenti parametri:
-	  
+	  <code>it/csi/mddtools/servicegen/cxf/workflow/checkSvcOrch.mwe</code>, che prevede i seguenti parametri:
+
 	  <table border="1">
 	  <thead style="background:silver"><tr><td>parametro</td><td>descrizione</td><td>esempio</td><td>obbl/opz</td></tr></thead>
 	  <tbody>
@@ -132,31 +132,31 @@
 	  <td><code>myprod.mdd/src/model/myprod/mycomp/myorchestration.svcorch</code></td>
 	  <td>obbl</td>
 	  </tr>
-	  
+
 	  </tbody>
 	  </table>
-	  
+
 	  </p>
-	  
+
 	  <p>
 	  Esempio:
 
-<pre>    
-<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/cxf/workflow/checkSvcOrch.oaw"</font>
+<pre>
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/cxf/workflow/checkSvcOrch.mwe"</font>
   <font color='#000080'>model=</font><font color='#008000'>"myprod.mdd/src/model/myprod/mycomp/myorchestration.svcorch"</font>&nbsp;
 <font color='#000080'>/&gt;</font><br>
 
-</pre>    
+</pre>
 	  </p>
-	  
+
 	  <h3>Cartuccia di check del modello delle risorse accedute (appresources)</h3>
-	  
+
 	  <p>
 	  E'necessario verificare la validit&agrave; del modelli di descrizione delle
 	  risorse accedute.
 	  Per far ci&ograve; &egrave; disponibile la cartuccia
-	  <code>it/csi/mddtools/servicegen/cxf/workflow/checkAppresources.oaw</code>, che prevede i seguenti parametri:
-	  
+	  <code>it/csi/mddtools/servicegen/cxf/workflow/checkAppresources.mwe</code>, che prevede i seguenti parametri:
+
 	  <table border="1">
 	  <thead style="background:silver"><tr><td>parametro</td><td>descrizione</td><td>esempio</td><td>obbl/opz</td></tr></thead>
 	  <tbody>
@@ -166,25 +166,25 @@
 	  <td><code>myprod.mdd/src/model/myprod/mycomp/myresources.appresources</code></td>
 	  <td>obbl</td>
 	  </tr>
-	  
+
 	  </tbody>
 	  </table>
-	  
+
 	  </p>
-	  
+
 	  <p>
 	  Esempio:
 
-<pre>    
-<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/cxf/workflow/checkAppresources.oaw"</font>
+<pre>
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/cxf/workflow/checkAppresources.mwe"</font>
   <font color='#000080'>model=</font><font color='#008000'>"myprod.mdd/src/model/myprod/mycomp/myresources.appresources"</font>&nbsp;
 <font color='#000080'>/&gt;</font><br>
 
-</pre>    
+</pre>
 	  </p>
 
 <h3>Properties supportate</h3>
-<p>Il generatore <b>SERVICEGEN</b> supporta le seguenti properties (che devono essere inserite nel file 
+<p>Il generatore <b>SERVICEGEN</b> supporta le seguenti properties (che devono essere inserite nel file
 <i>workflow.properties</i>.
 <table border="1">
 	  <thead style="background:silver"><tr>
@@ -194,7 +194,7 @@
 	  <td>cartuccia</td>
 	  </tr></thead>
 	  <tbody>
-	  
+
 	  <tr>
 	  <td><code>javapackage-organization-name</code></td>
 	  <td>
@@ -208,7 +208,7 @@
 	  </td>
 	  <td><code>com.acme</code></td>
 	  <td>
-	  	<i>csi14.oaw</i></td>
+	  	<i>csi14.mwe</i></td>
 	  </tr>
 	  <tr>
 	  <td><code>servicegen.ivyRepositoryHost</code></td>
@@ -223,9 +223,9 @@
 	  </td>
 	  <td><code>myrepository.acme.com</code></td>
 	  <td>
-	  	<i>csi14.oaw</i></td>
+	  	<i>csi14.mwe</i></td>
 	  </tr>
-	  
+
 	  </tbody>
 </table>
 </p>
