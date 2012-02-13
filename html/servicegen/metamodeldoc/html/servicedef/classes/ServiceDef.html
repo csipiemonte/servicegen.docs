@@ -66,15 +66,25 @@
 
 <p>Referenced by</p>
 <ul>
-	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a> <img src="../icons/ecore/EReference.gif" /><a href="../../servicegen/classes/SOABEModel.html#re_serviceDefs">serviceDefs</a> (<img src="../../icons/ecore/EClass.gif" /><a href="../../servicegen/classes/SOABEModel.html">servicegen :: SOABEModel</a>)</li>
-	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a> <img src="../icons/ecore/EReference.gif" /><a href="../../servicegen/classes/ServiceImpl.html#re_provides">provides</a> (<img src="../../icons/ecore/EClass.gif" /><a href="../../servicegen/classes/ServiceImpl.html">servicegen :: ServiceImpl</a>)</li>
-	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a> <img src="../icons/ecore/EReference.gif" /><a href="../../appresources/classes/ServiceConnector.html#re_serviceDef">serviceDef</a> (<img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../appresources/classes/ServiceConnector.html">appresources :: ServiceConnector</a>)</li>
 	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a> <img src="../icons/ecore/EReference.gif" /><a href="../../servicedef/classes/DocumentRoot.html#re_service">service</a> (<img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/DocumentRoot.html">servicedef :: DocumentRoot</a>)</li>
 	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a> <img src="../icons/ecore/EReference.gif" /><a href="../../svcorch/classes/Orchestration.html#re_service">service</a> (<img src="../../icons/ecore/EClass.gif" /><a href="../../svcorch/classes/Orchestration.html">svcorch :: Orchestration</a>)</li>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a> <img src="../icons/ecore/EReference.gif" /><a href="../../servicegen/classes/ServiceImpl.html#re_provides">provides</a> (<img src="../../icons/ecore/EClass.gif" /><a href="../../servicegen/classes/ServiceImpl.html">servicegen :: ServiceImpl</a>)</li>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a> <img src="../icons/ecore/EReference.gif" /><a href="../../servicegen/classes/SOABEModel.html#re_serviceDefs">serviceDefs</a> (<img src="../../icons/ecore/EClass.gif" /><a href="../../servicegen/classes/SOABEModel.html">servicegen :: SOABEModel</a>)</li>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a> <img src="../icons/ecore/EReference.gif" /><a href="../../appresources/classes/ServiceConnector.html#re_serviceDef">serviceDef</a> (<img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../appresources/classes/ServiceConnector.html">appresources :: ServiceConnector</a>)</li>
 </ul>
 
 <h2><a name="at_authLevel" /><img src="../icons/ecore/EAttribute.gif" />Attribute servicedef :: AuthLevelEnum authLevel</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p><p>
+Livello di autenticazione/autorizzazione richiesta dal servizio. 
+Pu&ograve; valere:
+<ul>
+<li>A0: servizio pubblico anonimo</li>
+<li>A1: il sistema fruitore del servizio si deve autenticare e vi&egrave; una 
+       autorizzazione Role-Based all'utilizzo dei singoli metodi</li>
+<li>A2: come A1, ma con in aggiunta la possibilit&agrave; di tracciare l'utente
+      fisico che sta utilizzando il sistema fruitore.</li>
+</ul>
+</p></p>
 
 
 
@@ -227,7 +237,10 @@
 </table>
 
 <h2><a name="at_codServizio" /><img src="../icons/ecore/EAttribute.gif" />Attribute ecore :: EString codServizio</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p><p>
+Codice del servizio. pu&ograve; assumere un valore alfanumerico ed &egrave;
+ammesso il separatore &quot;_&quot;.  
+</p></p>
 
 
 
@@ -278,7 +291,11 @@
 </table>
 
 <h2><a name="at_diagEnabled" /><img src="../icons/ecore/EAttribute.gif" />Attribute ecore :: EBoolean diagEnabled</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p><p>
+Se valorizzato a <i>true</i> il servizio &egrave; predisposto per le funzioni di 
+diagnostica.
+La funzione pu&ograve; non essere prevista per tutte le cartucce.
+</p></p>
 
 
 
@@ -329,7 +346,10 @@
 </table>
 
 <h2><a name="at_monitorable" /><img src="../icons/ecore/EAttribute.gif" />Attribute ecore :: EBoolean monitorable</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p><p>
+Se valorizzato a <i>true</i> il servizio &egrave; predisposto per il monotoraggio.
+La funzione pu&ograve; non essere prevista per tutte le cartucce.
+</p></p>
 
 
 
@@ -380,7 +400,15 @@
 </table>
 
 <h2><a name="at_serviceType" /><img src="../icons/ecore/EAttribute.gif" />Attribute servicedef :: SrvTypeEnum serviceType</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p><p>
+Tipologia di servizio.
+Un servizio pu&ograve; essere:
+<ul>
+<li>applicativo</li>
+<li>di orchestrazione</li>
+<li>(infrastrutturale)</li>
+</ul>
+</p></p>
 
 
 
@@ -431,7 +459,10 @@
 </table>
 
 <h2><a name="at_traceEnabled" /><img src="../icons/ecore/EAttribute.gif" />Attribute ecore :: EBoolean traceEnabled</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p><p>
+Se valorizzato a <i>true</i> il servizio &egrave; predisposto per il tracing delle chiamate.
+La funzione pu&ograve; non essere prevista per tutte le cartucce.
+</p></p>
 
 
 
@@ -482,7 +513,7 @@
 </table>
 
 <h2><a name="at_versione" /><img src="../icons/ecore/EAttribute.gif" />Attribute ecore :: EString versione</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p><p>Versione dell'interfaccia di sevizio.</p></p>
 
 
 
@@ -587,7 +618,11 @@
 </table>
 
 <h2><a name="re_bindings" /><img src="../icons/ecore/EReference.gif" />Reference servicedef :: ServiceBinding bindings</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p><p>
+Elenco dei binding (canali) su cui &egrave; esposto il servizio.
+A seconda delle cartucce di generazione saranno o meno disponibili solo alcune
+tipologie di binding. 
+</p></p>
 
 
 
@@ -641,7 +676,7 @@
 </table>
 
 <h2><a name="re_operations" /><img src="../icons/ecore/EReference.gif" />Reference servicedef :: Operation operations</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p><p>Elenco delle operazioni esposte dal servizio</p></p>
 
 
 
@@ -695,7 +730,7 @@
 </table>
 
 <h2><a name="re_roles" /><img src="../icons/ecore/EReference.gif" />Reference servicedef :: Role roles</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p>I ruoli previsti per l'autorizzazione del servizio</p>
 
 
 
@@ -749,7 +784,7 @@
 </table>
 
 <h2><a name="re_types" /><img src="../icons/ecore/EReference.gif" />Reference servicedef :: Types types</h2>
-<p>[[ TODO - add documentation here ]]</p>
+<p><p>Elenco dei tipi (<b>Entity</b> ed <b>Exception</b>) definiti per il servizio</p></p>
 
 
 
@@ -804,4 +839,4 @@
 
 
 
-<div>generated on 11-nov-2011 at 12.54.02 by <a href="http://metamodeldoc.randomice.net">metamodeldoc</a></div></body></html>
+<div>generated on 13-feb-2012 at 14.49.13 by <a href="http://metamodeldoc.randomice.net">metamodeldoc</a></div></body></html>
