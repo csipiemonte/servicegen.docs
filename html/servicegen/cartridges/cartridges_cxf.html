@@ -208,7 +208,7 @@
 	  </td>
 	  <td><code>com.acme</code></td>
 	  <td>
-	  	<i>csi14.mwe</i></td>
+	  	<i>cxf.mwe</i></td>
 	  </tr>
 	  <tr>
 	  <td><code>servicegen.ivyRepositoryHost</code></td>
@@ -223,9 +223,28 @@
 	  </td>
 	  <td><code>myrepository.acme.com</code></td>
 	  <td>
-	  	<i>csi14.mwe</i></td>
+	  	<i>cxf.mwe</i></td>
 	  </tr>
-
+	  <tr>
+	  <td><code>servicegen.cxf.authenticationMethod</code></td>
+	  <td>
+	  	<ul>
+	  	<li>scopo: serve per specificare la modalit&agrave; di authenticazione di servizi con livello di sicurezza A1.
+	  	</li>
+	  	<li>valori ammessi:
+	  	<ul>
+	  	<li><code>WSonly</code>: Basic Authentication su Web Server</li>
+	  	<li><code>ASonly</code>: Basic Authentication su Application Server tramite J2EE Realm</li>
+	  	<li><code>both</code>: Basic Authentication su Web Server <i>e</i> su Application Server</li>
+	  	</ul>
+	  	</li>
+   		<li>default: both</li>
+	  	</ul>
+	  </td>
+	  <td><code>myrepository.acme.com</code></td>
+	  <td>
+	  	<i>cxf.mwe</i></td>
+	  </tr>
 	  </tbody>
 </table>
 </p>
