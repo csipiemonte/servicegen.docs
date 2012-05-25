@@ -1,8 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Guida all'implementazione della WS-Security con CXF
-	Panel</title>
+<title>Guida all'implementazione della WS-Security con CXF</title>
 <link type="text/css" href=".//css/style.css" rel="stylesheet" />
 </head>
 
@@ -57,7 +56,7 @@
 				viene generata la logica per la gestione della password.
 				<p>
 				<ol type="disc">
-				<li>Se siamo nel canale d' ingresso nel impl del CallbackHandler (<i>InInterceptorCallback#WSEndpoint.code#</i>) viene generato il metodo setPassordUsernameToken() con una regione protetta la suo interno per permettere l'inserimento della password
+				<li>Se siamo nel canale d' ingresso nel impl del CallbackHandler (<i>InInterceptorCallback#WSEndpoint.code#</i>) viene generato il metodo setPassordUsernameToken() con una regione protetta al suo interno per permettere l'inserimento della password
 				</li>
 				<li>Se siamo nel canale di uscita nel impl del CallbackHandler (<i>OutInterceptorCallback#WSEndpoint.code#</i>) viene generato il metodo validatePassordUsernameToken() per il controllo dello user e della passord.
 				</li>
@@ -83,7 +82,7 @@
 					</tbody>
 				</table>
 				</td>
-				<td class="featureDescr">Il generatore produrr&agrave; i file di configurazione cxf</td>
+				<td class="featureDescr"></td>
 				<tr>				
 				<td class="featureSpec">Signature</td>
 				<td class="featureDescr">Abilita la firma del messaggio.</td>

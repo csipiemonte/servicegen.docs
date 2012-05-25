@@ -27,6 +27,10 @@
     </topic>
     <topic href="html/servicegen/faq.html" label="F.A.Q.">
     </topic>
+    <topic href="html/servicegen/guides/guides.html" label="Guides">
+       <topic href="html/servicegen/guides/cxfWsSecurity/index.html" label="Guida all&apos;implementazione della WS-Security con CXF">
+       </topic>
+    </topic>
     <topic href="html/servicegen/rationale.html" label="Appendice: design rationale">
     </topic>
     <topic href="html/servicegen/bibl.html" label="Appendice: documenti di riferimento">
