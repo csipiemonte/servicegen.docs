@@ -8,16 +8,16 @@
       <h2>
          Servicegen - overview
       </h2>
-      <p>versione: 2.1.0</p>
+      <p>versione: 2.2.0</p>
       <p>
-      <b>SERVICEGEN</b> è uno strumento di generazione di codice specifico per la produzione
-      di interi progetti software che realizzano uno o più servizi secondo il paradigma SOA.
+      <b>SERVICEGEN</b> ï¿½ uno strumento di generazione di codice specifico per la produzione
+      di interi progetti software che realizzano uno o piï¿½ servizi secondo il paradigma SOA.
       Attualmente sono supportate due tecnologie target:
       <ul>
       <li>stack J2EE arricchito con le librerie di cooperazione applicativa C.S.I</li>
       <li>stack J2EE arricchito con il framework per web services CXF</li>
       </ul>
-      Lo strumento permette di definire uno o più servizi realizzati all'interno di un componente di prodotto,
+      Lo strumento permette di definire uno o piï¿½ servizi realizzati all'interno di un componente di prodotto,
       secondo gli standard di sviluppo e le linee guida vigenti in <i>CSIPIEMONTE</i>.
       </p>
       Il modello che descrive l'applicazione &egrave;:
@@ -37,12 +37,12 @@
       Per ciascun componente &egrave; possibile definire uno o pi&ugrave; definizioni di servizio, ciascuna delle quali &egrave; caratterizzata da:
       <ul>
       <li>Un codice servizio, cos&igrave; come verr&egrave; classificato nel repository dei servizi</li>
-      <li>Una versione dell’interfaccia (in formato <i>major.minor</i>)</li>
+      <li>Una versione dellï¿½interfaccia (in formato <i>major.minor</i>)</li>
       <li>La tipologia di servizio, da scegliere tra Applicativo, di Orchestrazione, Infrastrutturale</li>
       <li>Un insieme di tipi user defined (entit&agrave;, array tipati contenenti entit&agrave; user defined, ed eccezioni)</li>
-      <li>Un insieme di operazioni esposte dall’interfaccia del servizio, che possono utilizzare come parametri o valori di ritorno un tipo base csi
+      <li>Un insieme di operazioni esposte dallï¿½interfaccia del servizio, che possono utilizzare come parametri o valori di ritorno un tipo base csi
       o un tipo user defined (entity)</li>
-      <li>Eventuali regole di autorizzazione all’utilizzo delle varie operazioni, secondo quanto specificato nel documento "Linee guida per la
+      <li>Eventuali regole di autorizzazione allï¿½utilizzo delle varie operazioni, secondo quanto specificato nel documento "Linee guida per la
       sicurezza nella cooperazione applicativa" <a href="http://dsp.csi.it/dsp/opencms/dsp/it/piattaforme/componenti/Librerie/CSI/sicurezza_coop.doc">(v.)</a>.
       </ul>
       </p>
@@ -93,17 +93,17 @@
         </li>
 		</ul>
 	  </li>
-	  <li>Per ogni definizione di servizio all’interno di ciascun componente:
+	  <li>Per ogni definizione di servizio allï¿½interno di ciascun componente:
 	    <ul>
-	    <li>L’interfaccia CSI del servizio</li>
+	    <li>Lï¿½interfaccia CSI del servizio</li>
 		<li>Le classi java corrispondenti alle entit&agrave; e alle eccezioni user-defined</li>
 		<li>Le classi che implementano il servizio come Stateless Session EJB</li>
 		<li>Nel caso dei servizi orchestrati gli scheletri dei descrittori XML svcflow dei flussi relativi a ciascuna operazione</li>
-		<li>Il build che costruisce i pacchetti interni relativi ai singoli binding e la distribuzione delle librerie client dell’interfaccia del
+		<li>Il build che costruisce i pacchetti interni relativi ai singoli binding e la distribuzione delle librerie client dellï¿½interfaccia del
 		servizio; nel caso di binding ejb, se il servizio &egrave; coop-trace enabled, i file conterranno anche le configurazioni dei pluggable
 		function handler appositi .
 		</li>
-		<li>I file di porta delegata (a scopo di test o da distribuire ai fruitori - ejb sempre, soap solo se presente il relativo binding) –
+		<li>I file di porta delegata (a scopo di test o da distribuire ai fruitori - ejb sempre, soap solo se presente il relativo binding) ï¿½
 		nel caso in cui il servizio sia coop-trace enabled, i file conterranno anche le configurazioni dei pluggable function handler appositi.
 		</li>
 		<li>Un abbozzo di test Junit per ciascun servizio</li>
@@ -130,14 +130,14 @@
         </li>
 		</ul>
 	  </li>
-	  <li>Per ogni definizione di servizio all’interno di ciascun componente:
+	  <li>Per ogni definizione di servizio allï¿½interno di ciascun componente:
 	    <ul>
-	    <li>L’interfaccia jax-ws compliant del servizio</li>
+	    <li>Lï¿½interfaccia jax-ws compliant del servizio</li>
 		<li>Le classi java corrispondenti alle entit&agrave; e alle eccezioni user-defined</li>
 		<li>Le classi che implementano il servizio come <i>bean Spring</i></li>
 		<li>Nel caso dei servizi orchestrati gli scheletri dei descrittori XML svcflow dei flussi relativi a ciascuna operazione</li>
 		<li>Il build che costruisce i pacchetti interni relativi ai singoli binding e la distribuzione delle librerie client
-		dell’interfaccia del servizio;
+		dellï¿½interfaccia del servizio;
 		</li>
 		<li>Un abbozzo di test Junit per ciascun servizio</li>
         </ul>
@@ -147,7 +147,7 @@
 
 	<p>
 	Lo scenario di utilizzo dello strumento prevede quindi la generazione <i>model driven</i> con round-trip dei servizi: definendo incrementalmente
-	il modello dell’applicazione (secondo il metamodello sepcifico di SERVICEGEN) &egrave; possibile generare una applicazione
+	il modello dellï¿½applicazione (secondo il metamodello sepcifico di SERVICEGEN) &egrave; possibile generare una applicazione
 	completa che pu&ograve; evolvere nel tempo con round trip monodirezionale modello->codice.
     </p>
     <p>
@@ -163,7 +163,7 @@
     <li>La sequenza degli step (<i>nodes</i>) che costituiscono l'orchestrazione, che possono essere:
     	<ul>
     	<li>Nodo di start: nodo iniziale che marca l'inizio dell'orchestrazione e inserisce
-    		in uno o più <i>DataSlot </i>i valori di ciascun parametro di input del metodo di orchestrazione
+    		in uno o piï¿½ <i>DataSlot </i>i valori di ciascun parametro di input del metodo di orchestrazione
     	</li>
     	<li>Nodo di stop: nodo finale che marca il termine dell'orchestrazione e permette di restituire come
     		output del metodo di orchestrazione il valore contenuto in un particolare <i>DataSlot</i></li>
@@ -173,7 +173,7 @@
     		<ul>
     		<li>per accedere ad un particolare metodo di uno dei servizi
     			dichiarati nel ResourceSet</li>
-    		<li>valorizzando i parametri con il valore di uno o più <i>DataSlot</i></li>
+    		<li>valorizzando i parametri con il valore di uno o piï¿½ <i>DataSlot</i></li>
     		<li>memorizzando l'eventuale valore di ritorno in un <i>DataSlot</i></li>
     		<li>eseguendo una sottosequenza di step in caso di eccezione (<i>ExceptionHandler</i>)</li>
     		</ul>
@@ -210,7 +210,7 @@
     <td>binding</td>
     <td>sono supportati i binding <i>ejbpa</i>, <i>pabr</i>, <i>wsfad</i></td>
     <td>&egrave; supportato il solo binding di tipo <i>ws</i></td>
-    <td>La modalit&agrave; CSI non è una modalit&agrave; standard web services di conseguenza gli insiemi
+    <td>La modalit&agrave; CSI non ï¿½ una modalit&agrave; standard web services di conseguenza gli insiemi
     dei binding supportati dalle due modalit&agrave; sono disgiunti</td>
     </tr>
     </tbody>
