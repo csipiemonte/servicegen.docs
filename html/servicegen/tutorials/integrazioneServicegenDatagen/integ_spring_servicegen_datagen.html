@@ -127,6 +127,12 @@ Ad esempio, se il componente java del servizio ha codice prodotto <code>testprod
 occorrer&agrave; utilizzare la seguente impostazione di tale parametro:
 <code>it.csi.testprod.testcomp</code>, in questo modo i DAO verranno generati nel package:
 <code>it.csi.testprod.testcomp.business.dao</code>.  
+<br></br>
+Completata la generazione inserire nella regione protetta del Dao-beans.xml i riferimenti al dataSource
+	<br></br>
+	<img border="0" src="img/daoBeanDS.jpg"/>	
+	<br></br>	
+
 </p>			
 
 <h3>Passo 3 (opz.): definizione del bean <i>manager</i></h3>
@@ -146,14 +152,29 @@ descritta in fig. 1 &egrave; necessario:
 <i>manager</i> e <i>dao</i></li>
 <li>definire nei <i>bean manager</i> le property destinate a contenere i riferimenti ai bean
 <i>dao</i> necessari</li>
-<li>completare i file di configurazione di spring in modo da costruire il grafo di dipendenze tra i vari bean.</li>
+<li>completare i file di configurazione di spring in modo da costruire il grafo di dipendenze tra i vari bean.
+</li>
 </ul>
 </p>
 
+<h3>Passo 5: Gestione transazione sui dati</h3>
+<p>
+Per gestire le transazioni sui dati &egrave; necessario rendere transazionale l' Operation definito sul modello ServiceDef (impostare la property <i>Tx Type</i> a <i>NewLocalTx</i>).
+Per garantire la Rollback dei datile vie sono due: 
+<ul>
+<li>rilanciare (throw) un'eccezione unchecked (es. RuntimeException) </li>
+<li>invocare session.setRollBackOnly()</li>
+</ul>
+[http://kbt.csi.it/sviluppo/problematiche-ricorrenti/item/683-come-si-gestisce-il-rollback-delle-transazioni-quando-si-usa-spring]
+
+</p>
+<!-- 
 <h3>Progetto di esempio </h3>
-<p>Un progetto generatore "hello.project" ed il relativo progetto generato "hello_gen" sono disponibili in formato zip a questo <a href="project_hello/Hello_project.zip" target="_blank" >link</a> .
+<p>Un progetto generatore "hello.project" ed il relativo progetto generato "hello_gen" sono disponibili in formato zip a questo <a href="project_hello/integrazione_tutorial_def.zip" target="_blank" >link</a> .
  </p>
+  -->
 </body>
+
 </html>
 
 					
