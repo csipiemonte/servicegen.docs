@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+
+<h2>INTEGRAZIONE TRA DATAGEN E N SERVIZI APPLICATIVI tramite Spring</h2>
+<body>
+<p>
+Ipotizziamo di dover generare N servizi applicativi con servicegen che utilizzino, per la realizzazione della business logic, un unico strato di accesso ai dati (DAO) generato con datagen.
+<p>
+I passi necessari per l'integrazione tra SERVICEGEN e DATAGEN sono:
+<ol>
+<li >modellazione tramite servicegen di N serviceImpl (1 per ogni servizio applicativo)
+<li>modellazione strato accesso dati tramite datagen
+<li>scrittura file di workflow per integrazione
+<li>configurazione manuale dei file spring prodotti dal generatore
+</ol>
+<p>
+Per i punti 1 e 2 si pu&ograve; far riferimento al tutorial <a href="integ_spring_servicegen_datagen.html" target="_blank" ><i>INTEGRAZIONE TRA DATAGEN E SERVICEGEN tramite Spring</i></a>, mentre per i 3 e 4 &egrave; necessario applicare alcuni accorgimenti.
+<h3>
+Scrittura file di workflow
+</h3>
+
+Nel file di workflow dovremo:
+<ol>
+<li>Nel richiamo della cartuccia di generazione di <i>servicegen</i> impostare il parametro <code>useExternalDaoBeans</code> a <b><i>false</i></b>. In questo modo verrano generati N daoBeans vuoti, uno per ogni servizio applicativo. All' interno della loro regione protetta referenzieremo il dao-bean comune.
+<li>Nel richiamo della cartuccia datagen impostare opportunamente <code>basePackage</code> e <code>daoBeansFileName</code> in modo che le classi di accesso dati vengano generate sotto il package <code> business</code> e il dao-beans nel package <code>business.dao</code>
+<br>
+Ad esempio:
+<ul>
+<li><code>basePackage="it.csi.testprod.testcomp"</code>   
+<li><code>daoBeansFileName="src/java/it/csi/testprod/testcomp/business/dao/dao-beans.xml"</code>
+</ul>     
+</ol>
+
+<h3>Configurazione manuale file di spring</h3>
+<p>
+Il generatore produrr&agrave;:
+<ol> 
+<li>i file di configurazione Spring [nomeServizio]beanContext.xml e [nomeServizio]dao-beans.xml (uno per ogni servizio applicativo) 
+<li>il file di configurazione comune dao-beans.xml per lo strato di accesso ai dati
+</ol>
+<br>
+Terminata la generazione dovremo:
+<ul>
+<li>inserire nella regione protetta del dao-beans.xml i riferimenti al dataSource
+	<br></br>
+	<img border="0" src="img/daoBeanDS.jpg"/>	
+	<br></br>	
+<li>configurare il [nomeServizio]dao-bean.xml in modo che referenzi il dao-beans.xml prodotto da datagen. 
+	<br>
+	Ad esempio, all' interno della regione protetta del [nomeServizio]dao-bean.xml  potremmo inserire il seguente import:
+	<br>
+	<code>
+	< import resource="classpath*:it/csi/testprod/testcomp/business/dao/dao-beans.xml"/>
+	</code>
+</ul>
+</body>
+
+</html>
+
+					
+
+
+
+
+ 
