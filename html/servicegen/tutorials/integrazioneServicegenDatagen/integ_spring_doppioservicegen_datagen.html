@@ -5,17 +5,23 @@
 <h2>INTEGRAZIONE TRA DATAGEN E N SERVIZI APPLICATIVI tramite Spring</h2>
 <body>
 <p>
-Ipotizziamo di dover generare N servizi applicativi con servicegen che utilizzino, per la realizzazione della business logic, un unico strato di accesso ai dati (DAO) generato con datagen.
+Ipotizziamo di dover generare N servizi applicativi con servicegen che utilizzino, per la realizzazione della business logic, uno strato di accesso ai dati (DAO) generato con datagen.
 <p>
 I passi necessari per l'integrazione tra SERVICEGEN e DATAGEN sono:
 <ol>
 <li >modellazione tramite servicegen di N serviceImpl (1 per ogni servizio applicativo)
-<li>modellazione strato accesso dati tramite datagen
+<li>modellazione strato accesso dati tramite datagen 
 <li>scrittura file di workflow per integrazione
 <li>configurazione manuale dei file spring prodotti dal generatore
 </ol>
 <p>
-Per i punti 1 e 2 si pu&ograve; far riferimento al tutorial <a href="integ_spring_servicegen_datagen.html" target="_blank" ><i>INTEGRAZIONE TRA DATAGEN E SERVICEGEN tramite Spring</i></a>, mentre per i 3 e 4 &egrave; necessario applicare alcuni accorgimenti.
+Per la modellazione si pu&ograve; far riferimento al tutorial <a href="integ_spring_servicegen_datagen.html" target="_blank" ><i>INTEGRAZIONE TRA DATAGEN E SERVICEGEN tramite Spring</i></a> tenendo conto di alcuni accorgimenti da applicare.
+
+<h3>
+Modellazione strato di accesso dati
+</h3>
+Se si desidera integrare M modelli datagen occorre valorizzare il parametro name del modello *.datagen (necessario per garantire univocità delle regioni protette).
+
 <h3>
 Scrittura file di workflow
 </h3>
