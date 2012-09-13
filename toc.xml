@@ -14,7 +14,7 @@
        </topic>
        <topic href="html/servicegen/tutorials/integrazioneServicegenDatagen/integ_spring_servicegen_datagen.html" label="Tutorial: integrazione Service Datagen">
        </topic>
-       <topic href="html/servicegen/tutorials/integrazioneServicegenDatagen/integ_spring_doppioservicegen_datagen.html" label="Tutorial: integrazione tra N Service e Datagen">
+       <topic href="html/servicegen/tutorials/integrazioneServicegenDatagen/integ_spring_doppioservicegen_datagen.html" label="Tutorial: integrazione tra N Service e M Datagen">
        </topic>
     </topic>
     <topic href="html/servicegen/mm_reference.html" label="Guida di riferimento metamodello">
