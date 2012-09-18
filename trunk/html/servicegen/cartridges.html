@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <title>Servicegen - cartridges disponibili</title>
+   </head>
+
+   <body>
+      <h2>
+         Servicegen - Cartridges disponibili
+      </h2>
+      <ul>
+      <li><a href="cartridges/cartridges_csi.html">cartridges per la modalit&agrave; CSI</a></li>
+      <li><a href="cartridges/cartridges_cxf.html">cartridges per la modalit&agrave; CXF</a></li>
+      </ul>
+
+     <h3>cartuccia di generazione del grafico di un'orchestrazione</h3>
+	  <p>
+	  La cartuccia
+	  <code>it/csi/mddtools/servicegen/workflow/csi14.mwe</code> permette la generazione di un
+	  report grafico che descrive l'orchestrazione in un formato simile ai flow-chart.
+	  La cartuccia prevede i seguenti parametri:
+
+	  <table border="1">
+	  <thead style="background:silver"><tr><td>parametro</td><td>descrizione</td><td>esempio</td><td>obbl/opz</td></tr></thead>
+	  <tbody>
+	  <tr>
+	  <td>model</td>
+	  <td>percorso del file del modello <i>servicegen</i>, a partire dalla root del workspace eclipse</td>
+	  <td><code>myprod.mdd/src/model/myprod/mycomp/myservice.servicegen</code></td>
+	  <td>obbl</td>
+	  </tr>
+
+	  <tr>
+	  <td>targetDir</td>
+	  <td>percorso della cartella in cui devono essere generati i file di report
+	  (il percorso &egrave; relativo alla directory root del progetto)</td>
+	  <td><code>docs/reports</code></td>
+	  <td>obbl</td>
+	  </tr>
+
+	  <tr>
+	  <td>graphvizBin</td>
+	  <td>Percorso completo della directory in cui si trovano i files eseguibuli di
+	  <i>graphviz</i>.
+	  </td>
+	  <td><code>c:/programmi/graphviz/bin/</code></td>
+	  <td>obbl</td>
+	  </tr>
+
+	  </tbody>
+	  </table>
+
+	  </p>
+
+	  <p>
+	  Esempio:
+
+<pre>
+<font color='#000080'>&lt;cartridge</font>&nbsp;<font color='#000080'>file=</font><font color='#008000'>"it/csi/mddtools/servicegen/workflow/orchestrationReport.mwe"</font>
+  <font color='#000080'>model=</font><font color='#008000'>"myprod.mdd/src/model/myprod/mycomp/myservice_orch1.svcorch"</font>&nbsp;
+  <font color='#000080'>targetDir=</font><font color='#008000'>"docs/reports"</font>
+  <font color='#000080'>targetDir=</font><font color='#008000'>"c:/programmi/graphviz/bin/"</font>
+<font color='#000080'>/&gt;</font><br>
+
+</pre>
+	  </p>
+	  <p>
+	  Il risultato dell'esecuzione &egrave; rappresentato da:
+	  <ul>
+	  <li>un file in formato <i>.dot</i> che deve essere dato in pasto al tool graphviz per generare l'immagine
+	  del report</li>
+	  <li>due batch (uno per windows e uno per unix) che devono essere eseguiti per completare il lavoro e produrre
+	  la gif che rappresenta il report</li>
+	  </ul>
+	  </p>
+   </body>
+</html>
+

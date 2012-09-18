@@ -1,0 +1,16 @@
+.features {width:100%;border: 1px solid #CCCCCC;font-size:12px;border-collapse:collapse;}
+
+.features th {text-align:center;empty-cells:collapse;background-color:#CCCCFF;border:1px solid;}
+
+.features td {text-align:center;border:1px solid;vertical-align: top;padding: 5px;}
+
+td.featureSpec {font-weight:bold; vertical-align: middle;background-color:#F5F5F5;}  
+
+td.featureDescr {text-align:left;padding-left:10px;}
+
+
+.tabChannel {width:100%;border:none;font-size:12px; }
+.tabChannel th {text-align:left;empty-cells:collapse;background-color:#CCCCFF;border:1px solid;}
+.tabChannel td {text-align:left;border:1px solid;vertical-align: top;padding: 5px;}
+
+table.tabChannel td, table.tabChannel th{ padding:2px; border: none;}

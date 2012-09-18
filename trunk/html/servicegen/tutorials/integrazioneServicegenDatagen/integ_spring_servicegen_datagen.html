@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+
+<h2>INTEGRAZIONE TRA DATAGEN E SERVICEGEN tramite Spring</h2>
+
+
+<body>
+<p>
+Uno scenario molto diffuso delle applicazioni J2EE generate tramite i tools MDD Servicegen e Datagen pu&ograve;
+essere quello di avere un servizio applicativo generato con <b>servicegen</b> che utilizzi per la realizzazione
+della business logic uno strato di accesso ai dati (DAO) generato con <b>datagen</b>.
+Tipicamente per realizzare questo tipo di design implementativo &egrave; necessario integrare le funzionalit&agrave; dei
+due generatori: l'integrazione avviene tramite <i>spring</i>.
+</p>
+<p>
+Nell design del codice generato dai due tools entrano in gioco i seguenti elementi:
+<ul>
+<li>elementi forniti da <b>servicegen</b>
+	<ul>
+	<li>bean di implementazione del servizio: &egrave; un bean generato che possiede un metodo per ogni <b>Operation</b> definita nell'
+	interfaccia di servizio; lo sviluppatore ha il compito di inserire manualmente per ogni metodo/operazione la logica di business.</li>
+	<li>uno o pi&ugrave; bean (opzionali) con il ruolo di <i>manager</i>, totalmente scritti a mano, che permettono di strutturare 
+	al meglio la logica di business (ad esempio per mettere a fattor comune sotto-funzionalit&agrave; utilizzate in pi&ugrave; 
+	di una operazione)</li>
+	</ul>
+</li>
+<li>elementi forniti da <b>datagen</b>
+	<ul>
+	<li>un bean per ogni <i>DataAccessObject</i>: effettua l'accesso al DBMS</li>
+	</ul>
+</li>
+</ul>
+I tipici modi per combinare questi elementi (e quindi per integrare i due strumenti) sono quelli descritti 
+nel seguente esempio. 
+<br></br>
+
+<ul>
+<li>il <i>bean di implementazione </i> effettua l'accesso alla base dati utilizzando direttamente un <i>dao</i> (nell'esempio: Dao1)</li>
+<li>il <i>bean di implementazione </i> non accede direttamente al <i>dao</i> ma colloquia con il <i>bean manager</i>, il quale
+a sua volta coordina i vari <i>dao</i> e delega ad essi l'accesso vero e proprio ai dati.</li>
+</ul>  
+<br></br>
+</p>
+<br></br>
+<img border="0" src="img/architettura.jpg"/>
+
+<p>
+Per ottenere questo design integrato &egrave; necessario operare su vari fronti:
+<ul>
+<li>modellazione di <i>servicegen</i> in modo da utilizzare <i>spring</i></li>
+<li>definizione (manuale) degli eventuali bean <i>manager</i></li>
+<li>configurazione dei file di contesto di spring in modo da combinare i vari bean</li>
+</ul>
+</p>
+<h3>
+Passo 1: modellazione del servizio applicativo con opzione di utilizzo di spring
+</h3>
+<p>
+Supponiamo di voler creare un servizio applicativo.<br></br>
+Dopo aver definito nel <b>ServiceDef</b> le operazioni offerte dal servizio, &egrave; necessario definire nel modello principale
+(quello con root-element di tipo <b>SOABEModel</b>) l'implementazione, attraverso l'elemento <b>ServiceImpl</b>.
+Scegliamo come <i>cartridge</i> l'elemento <b>ManualImplCartridge</b> (che sta ad indicare che l'implementazione dei metodi dovr&agrave; 
+essere realizzata tramite codifica manuale) e impostiamo la property <i>useInjectedPojo</i> a <i>true</i>: tale opzione permette di generare
+tutti i files necessari per utilizzare <i>spring</i>. In particolare per lo sviluppatore &egrave; rilevante (perch&egrave; dovr&agrave; integrarlo
+con configurazioni aggiuntive) il file di configurazione del contesto <i>spring</i>, che conterr&agrave;:
+<ul>
+<li>la configurazione del <i>bean di implementazione</i>, comprensivo di regione protetta utilizzabile per la configurazione
+di collegamenti tra questo bean e gli altri bean (dao, manager)</li>
+<li>una <i>regione protetta</i> dove sar&agrave; possibile configurare gli eventuali bean <i>manager</i> 
+</ul>
+</p>
+Il seguente esempio (fig.1) mostra un modello Servicegen in cui viene dichiarato un servizio applicativo con una sola operazione, 
+<code>sayHello()</code>.
+<br></br>
+<img border="0" src="img/fig1.jpg"/>					
+<br></br>
+</p>
+<p>Il file di configurazione di spring (da integrare manualmente) viene generato nella seguente posizione:
+ <code>{progetto}/conf/ejb/{servizio}/META-INF/{servizio}BeanContext.xml</code>, esempio:
+ <code>hello.mdd/conf/ejb/hello/META-INF/helloBeanContext.xml</code>
+</p>
+<p>Il generatore crea anche un altro file di configurazione di spring, destinato a contenere i bean dello strato di 
+accesso ai dati.
+Tale file &egrave; generato nella seguente posizione:
+<code>{progetto}/conf/ejb/{servizio}/META-INF/{servizio}Dao-beans.xml</code>, esempio:
+ <code>hello.mdd/conf/ejb/hello/META-INF/helloDao-beans.xml</code> ed &egrave; caricato allo startup del contesto
+ <i>spring</i>.
+</p>
+<p>Nella modalit&agrave; non integrata <i>servicegen-datagen</i> &egrave; necessario inserire manualmente le configurazioni
+dei dao in questo file; nella modalit&agrave; integrata invece occorre fare in modo che questo file sia generato da
+<i>datagen</i> invece che da <i>servicegen</i>, e fare in modo che <i>datagen</i> lo generi nella stessa posizione dove se lo
+aspettano le classi di startup di spring. Per fare ci&ograve; &egrave; necessario agire a livello di <i>workflow di generazione</i>:
+<ul>
+<li>nel richiamo della cartuccia di generazione di <i>servicegen</i> occorre utilizzare il parametro <code>useExternalDaoBeans</code>
+valorizzato a <i>true</i>:
+in questo modo <i>servicegen</i> <b>non</b> generer&agrave; il file.</li>
+<li>nel richiamo della cartuccia di generazione di <i>datagen</i> occorre utilizzare il parametro
+<code>daoBeansFileName</code> (nell'esempio precedente il valore di questo parametro dovr&agrave; essere ad esempio:
+<code>hello.mdd/conf/ejb/hello/META-INF/helloDao-beans.xml</code>).
+</li>
+</ul>  
+</p>
+<p><b>N.B:</b>&egrave; importante che siano effettuate <b>entrambe</b> le configurazioni altrimenti i due generatori sovrascriverebbero
+l'uno con l'altro il file con effetti dannosi indesiderati (es. perdita del contenuto delle regioni protette o perdita della definizione
+dei bean DAO, a seconda che sia eseguito prima l'uno o l'altro generatore).</p>
+<h3>					
+Passo 2: modellazione dello strato di accesso ai dati
+</h3>
+<p>
+Nella fig. 2 &egrave; esemplificato un modello <b>datagen</b> che descrive un ipotetico strato di accesso ai dati:
+</p>
+<br></br>
+
+<img border="0" src="img/fig2.jpg"/>	
+									
+<br></br>		
+<p>
+Non sono necessari particolari accorgimenti su tale modello per permettere l'integrazione in <b>servicegen</b>.
+E' invece necessario apportare alcune impostazioni sul file di workflow, al momento del richiamo della cartuccia <b>datagen</b>.
+Oltre all'impostazione del percorso in cui dovr&agrave; essere creato il file xml (vedere sopra) &egrave; anche necessario fare in modo che
+le classi java generate da <b>datagen</b> vengano collocate nella corretta alberatura di package. Trattandosi di un servizio la corretta
+alberatura per lo strato di accesso ai dati &agrave; all'interno del package <code>business.<cod_servizio></code>.
+L'impostazione del package-base viene effettuata con un apposito parametro della cartuccia di generazone di <b>datagen</b>:
+<code>basePackage</code>.
+Ad esempio, se il componente java del servizio ha codice prodotto <code>testprod</code> e codice componente <code>testcomp</code>,
+occorrer&agrave; utilizzare la seguente impostazione di tale parametro:
+<code>it.csi.testprod.testcomp</code>, in questo modo i DAO verranno generati nel package:
+<code>it.csi.testprod.testcomp.business.dao</code>.  
+<br></br>
+Completata la generazione inserire nella regione protetta del Dao-beans.xml i riferimenti al dataSource
+	<br></br>
+	<img border="0" src="img/daoBeanDS.jpg"/>	
+	<br></br>	
+
+</p>			
+
+<h3>Passo 3 (opz.): definizione del bean <i>manager</i></h3>
+<p>Nel caso risulti utile definire uno o pi&ugrave; bean custom con il ruolo di <i>manager</i>, questi possono essere definiti
+come normali bean di Spring (POJO) e conterranno tipicamente i metodi necessari
+per implementare la specifica business logic. Ciascuno di tali bean, al fine di implementare il design descritto in fig.1, referenzia 
+(ovvero utilizza operativamente nella sua classe) i bean dei dao generati con Datagen. Ovviamente
+&egrave; possibile anche che il bean custom abbia referenze ad eventuali
+altri bean definiti manualmente dall'utente. 
+</p>
+
+<h3>Passo 4: costruzione delle dipendenze spring</h3>
+<p>Il collante tra <i>bean di implementazione</i>, <i>manager</i>, <i>dao</i> &egrave; spring. Per costruire la struttura
+descritta in fig. 1 &egrave; necessario:
+<ul>
+<li>definire nel <i>bean di implementazione</i> le property destinate a contenere i riferimenti ai bean
+<i>manager</i> e <i>dao</i></li>
+<li>definire nei <i>bean manager</i> le property destinate a contenere i riferimenti ai bean
+<i>dao</i> necessari</li>
+<li>completare i file di configurazione di spring in modo da costruire il grafo di dipendenze tra i vari bean.
+</li>
+</ul>
+</p>
+
+<h3>Passo 5: Gestione transazione sui dati</h3>
+<p>
+Per gestire le transazioni sui dati &egrave; necessario rendere transazionale l' Operation definito sul modello ServiceDef (impostare la property <i>Tx Type</i> a <i>NewLocalTx</i>).
+Per garantire la Rollback dei datile vie sono due: 
+<ul>
+<li>rilanciare (throw) un'eccezione unchecked (es. RuntimeException) </li>
+<li>invocare session.setRollBackOnly()</li>
+</ul>
+[http://kbt.csi.it/sviluppo/problematiche-ricorrenti/item/683-come-si-gestisce-il-rollback-delle-transazioni-quando-si-usa-spring]
+
+</p>
+<!-- 
+<h3>Progetto di esempio </h3>
+<p>Un progetto generatore "hello.project" ed il relativo progetto generato "hello_gen" sono disponibili in formato zip a questo <a href="project_hello/integrazione_tutorial_def.zip" target="_blank" >link</a> .
+ </p>
+  -->
+</body>
+
+</html>
+
+					
+
+
+
+
+ 

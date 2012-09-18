@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Developer documentation for the abstract model class ServiceConnector</title>
+	</head><body>
+<h1>Abstract Class "appresources :: ServiceConnector"</h1>
+<p>Defined in package : <img src="../../icons/ecore/EPackage.gif" /><a href="../../appresources/package.html">appresources</a></p>
+<p>Connettore (astratto) per risorse di tipo "servizio"</p>
+
+
+
+
+<p>Super and Sub Types</p>
+
+<ul><li><img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../appresources/classes/ResourceConnector.html">appresources :: ResourceConnector</a>
+
+<ul><li><b><img src="../icons/ecore/DAbstractClass.gif" />appresources :: ServiceConnector</b>
+
+<ul>
+<li><img src="../../icons/ecore/EClass.gif" /><a href="../../appresources/classes/PDPAServiceConnector.html">appresources :: PDPAServiceConnector</a></li>
+
+<li><img src="../../icons/ecore/EClass.gif" /><a href="../../appresources/classes/RPCWebServiceConnector.html">appresources :: RPCWebServiceConnector</a></li>
+</ul>
+
+</li></ul>
+
+</li></ul>
+
+
+
+<p>All known Sub Classes</p>
+<ul>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../appresources/classes/PDPAServiceConnector.html">appresources :: PDPAServiceConnector</a></li>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../appresources/classes/RPCWebServiceConnector.html">appresources :: RPCWebServiceConnector</a></li>
+</ul>
+
+
+<table border="1">
+
+
+<tr style="vertical-align:top">
+
+
+<td>
+<p>Direct Attributes</p>
+<ul>
+	<li><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EBoolean.html">ecore :: EBoolean</a> <img src="../icons/ecore/EAttribute.gif" /><a href="../../appresources/classes/ServiceConnector.html#at_useRegistry">useRegistry</a></li>
+</ul>
+
+</td>
+
+
+
+
+<td>
+<p>Direct References</p>
+<ul>
+	<li><img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../servicedef/classes/ServiceBinding.html">servicedef :: ServiceBinding</a> <img src="../icons/ecore/EReference.gif" /><a href="../../appresources/classes/ServiceConnector.html#re_binding">binding</a></li>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../appresources/classes/ServiceSelector.html">appresources :: ServiceSelector</a> <img src="../icons/ecore/EReference.gif" /><a href="../../appresources/classes/ServiceConnector.html#re_selector">selector</a></li>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a> <img src="../icons/ecore/EReference.gif" /><a href="../../appresources/classes/ServiceConnector.html#re_serviceDef">serviceDef</a></li>
+</ul>
+
+</td>
+
+
+
+
+
+</tr>
+
+
+
+
+<tr style="vertical-align:top">
+
+
+<td>
+<p>Inherited Attributes</p>
+<ul>
+	<li><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EString.html">ecore :: EString</a> <img src="../icons/ecore/EAttribute.gif" /><a href="../../appresources/classes/ResourceConnector.html#at_code">code</a></li>
+</ul>
+
+</td>
+
+
+
+
+<td>
+<p>Inherited References</p>
+<ul>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../appresources/classes/RCAnnotation.html">appresources :: RCAnnotation</a> <img src="../icons/ecore/EReference.gif" /><a href="../../appresources/classes/ResourceConnector.html#re_annotations">annotations</a></li>
+</ul>
+
+</td>
+
+
+
+
+
+</tr>
+
+
+</table>
+
+<p>Referenced by</p>
+<ul>
+	<li><img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../appresources/classes/ServiceConnector.html">appresources :: ServiceConnector</a> <img src="../icons/ecore/EReference.gif" /><a href="../../svcorch/classes/SrvCall.html#re_serviceConnector">serviceConnector</a> (<img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../svcorch/classes/SrvCall.html">svcorch :: SrvCall</a>)</li>
+</ul>
+
+<h2><a name="at_useRegistry" /><img src="../icons/ecore/EAttribute.gif" />Attribute ecore :: EBoolean useRegistry</h2>
+<p>indica se il servizio è indirizzato tramite registry o con configurazione
+locale al fruitore</p>
+
+
+
+<table border="1">
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EBoolean.html">ecore :: EBoolean</a></td></tr>
+
+<tr><td>changeable</td><td>true</td></tr>
+
+
+<tr><td>defaultValueLiteral</td><td>null</td></tr>
+
+
+<tr><td>derived</td><td>false</td></tr>
+
+
+<tr><td>iD</td><td>false</td></tr>
+
+
+<tr><td>lowerBound</td><td>0</td></tr>
+
+
+<tr><td>name</td><td>useRegistry</td></tr>
+
+
+<tr><td>ordered</td><td>true</td></tr>
+
+
+<tr><td>transient</td><td>false</td></tr>
+
+
+<tr><td>unique</td><td>true</td></tr>
+
+
+<tr><td>unsettable</td><td>false</td></tr>
+
+
+<tr><td>upperBound</td><td>1</td></tr>
+
+
+<tr><td>volatile</td><td>false</td></tr>
+
+
+</tbody>
+</table>
+
+
+<h2><a name="re_binding" /><img src="../icons/ecore/EReference.gif" />Reference servicedef :: ServiceBinding binding</h2>
+<p>Il binding del servizio associato al connettore</p>
+
+
+
+<table border="1">
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td><img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../servicedef/classes/ServiceBinding.html">servicedef :: ServiceBinding</a></td></tr>
+
+<tr><td>changeable</td><td>true</td></tr>
+
+
+<tr><td>containment</td><td>false</td></tr>
+
+
+<tr><td>defaultValueLiteral</td><td>null</td></tr>
+
+
+<tr><td>derived</td><td>false</td></tr>
+
+
+<tr><td>lowerBound</td><td>0</td></tr>
+
+
+<tr><td>name</td><td>binding</td></tr>
+
+
+<tr><td>ordered</td><td>true</td></tr>
+
+
+<tr><td>resolveProxies</td><td>true</td></tr>
+
+
+<tr><td>transient</td><td>false</td></tr>
+
+
+<tr><td>unique</td><td>true</td></tr>
+
+
+<tr><td>unsettable</td><td>false</td></tr>
+
+
+<tr><td>upperBound</td><td>1</td></tr>
+
+
+<tr><td>volatile</td><td>false</td></tr>
+
+
+</tbody>
+</table>
+
+<h2><a name="re_selector" /><img src="../icons/ecore/EReference.gif" />Reference appresources :: ServiceSelector selector</h2>
+<p>Il selettore del servizio associato al connettore</p>
+
+
+
+<table border="1">
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td><img src="../../icons/ecore/EClass.gif" /><a href="../../appresources/classes/ServiceSelector.html">appresources :: ServiceSelector</a></td></tr>
+
+<tr><td>changeable</td><td>true</td></tr>
+
+
+<tr><td>containment</td><td>true</td></tr>
+
+
+<tr><td>defaultValueLiteral</td><td>null</td></tr>
+
+
+<tr><td>derived</td><td>false</td></tr>
+
+
+<tr><td>lowerBound</td><td>0</td></tr>
+
+
+<tr><td>name</td><td>selector</td></tr>
+
+
+<tr><td>ordered</td><td>true</td></tr>
+
+
+<tr><td>resolveProxies</td><td>true</td></tr>
+
+
+<tr><td>transient</td><td>false</td></tr>
+
+
+<tr><td>unique</td><td>true</td></tr>
+
+
+<tr><td>unsettable</td><td>false</td></tr>
+
+
+<tr><td>upperBound</td><td>1</td></tr>
+
+
+<tr><td>volatile</td><td>false</td></tr>
+
+
+</tbody>
+</table>
+
+<h2><a name="re_serviceDef" /><img src="../icons/ecore/EReference.gif" />Reference servicedef :: ServiceDef serviceDef</h2>
+<p>L'interfaccia logica del servizio associato al connettore</p>
+
+
+
+<table border="1">
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a></td></tr>
+
+<tr><td>changeable</td><td>true</td></tr>
+
+
+<tr><td>containment</td><td>false</td></tr>
+
+
+<tr><td>defaultValueLiteral</td><td>null</td></tr>
+
+
+<tr><td>derived</td><td>false</td></tr>
+
+
+<tr><td>lowerBound</td><td>0</td></tr>
+
+
+<tr><td>name</td><td>serviceDef</td></tr>
+
+
+<tr><td>ordered</td><td>true</td></tr>
+
+
+<tr><td>resolveProxies</td><td>true</td></tr>
+
+
+<tr><td>transient</td><td>false</td></tr>
+
+
+<tr><td>unique</td><td>true</td></tr>
+
+
+<tr><td>unsettable</td><td>false</td></tr>
+
+
+<tr><td>upperBound</td><td>1</td></tr>
+
+
+<tr><td>volatile</td><td>false</td></tr>
+
+
+</tbody>
+</table>
+
+
+
+<div>generated on 13-feb-2012 at 14.49.13 by <a href="http://metamodeldoc.randomice.net">metamodeldoc</a></div></body></html>

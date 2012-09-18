@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Developer documentation for the abstract model class ServiceBinding</title>
+	</head><body>
+<h1>Abstract Class "servicedef :: ServiceBinding"</h1>
+<p>Defined in package : <img src="../../icons/ecore/EPackage.gif" /><a href="../../servicedef/package.html">servicedef</a></p>
+<p>[[ TODO - add documentation here ]]</p>
+
+
+
+
+<p>Super and Sub Types</p>
+
+<ul><li><b><img src="../icons/ecore/DAbstractClass.gif" />servicedef :: ServiceBinding</b>
+
+<ul>
+<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/EJBPABinding.html">servicedef :: EJBPABinding</a></li>
+
+<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/SOAPPABRBinding.html">servicedef :: SOAPPABRBinding</a></li>
+
+<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/WSBinding.html">servicedef :: WSBinding</a></li>
+
+<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/WSFADBinding.html">servicedef :: WSFADBinding</a></li>
+</ul>
+
+</li></ul>
+
+
+
+<p>All known Sub Classes</p>
+<ul>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/EJBPABinding.html">servicedef :: EJBPABinding</a></li>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/SOAPPABRBinding.html">servicedef :: SOAPPABRBinding</a></li>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/WSBinding.html">servicedef :: WSBinding</a></li>
+	<li><img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/WSFADBinding.html">servicedef :: WSFADBinding</a></li>
+</ul>
+
+
+<table border="1">
+
+
+<tr style="vertical-align:top">
+
+
+<td>
+<p>Direct Attributes</p>
+<ul>
+	<li><img src="../../icons/ecore/EEnum.gif" /><a href="../../servicedef/datatypes/ChannelSecurityLevelEnum.html">servicedef :: ChannelSecurityLevelEnum</a> <img src="../icons/ecore/EAttribute.gif" /><a href="../../servicedef/classes/ServiceBinding.html#at_channelSecurityLevel">channelSecurityLevel</a></li>
+	<li><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EString.html">ecore :: EString</a> <img src="../icons/ecore/EAttribute.gif" /><a href="../../servicedef/classes/ServiceBinding.html#at_codBinding">codBinding</a></li>
+</ul>
+
+</td>
+
+
+
+
+
+
+
+
+</tr>
+
+
+
+
+
+</table>
+
+<p>Referenced by</p>
+<ul>
+	<li><img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../servicedef/classes/ServiceBinding.html">servicedef :: ServiceBinding</a> <img src="../icons/ecore/EReference.gif" /><a href="../../appresources/classes/ServiceConnector.html#re_binding">binding</a> (<img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../appresources/classes/ServiceConnector.html">appresources :: ServiceConnector</a>)</li>
+	<li><img src="../../icons/ecore/DAbstractClass.gif" /><a href="../../servicedef/classes/ServiceBinding.html">servicedef :: ServiceBinding</a> <img src="../icons/ecore/EReference.gif" /><a href="../../servicedef/classes/ServiceDef.html#re_bindings">bindings</a> (<img src="../../icons/ecore/EClass.gif" /><a href="../../servicedef/classes/ServiceDef.html">servicedef :: ServiceDef</a>)</li>
+</ul>
+
+<h2><a name="at_channelSecurityLevel" /><img src="../icons/ecore/EAttribute.gif" />Attribute servicedef :: ChannelSecurityLevelEnum channelSecurityLevel</h2>
+<p><p>
+Livello di securizzazione di canale per il binding.
+<ul>
+<li>C0: il canale &egrave; in chiaro</li>
+<li>C1: il canale &egrave; cifrato, senza client authentication</li>
+<li>C2: il canale &egrave; cifrato, con client authentication</li>
+</ul>
+</p></p>
+
+
+
+<table border="1">
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td><img src="../../icons/ecore/EEnum.gif" /><a href="../../servicedef/datatypes/ChannelSecurityLevelEnum.html">servicedef :: ChannelSecurityLevelEnum</a></td></tr>
+
+<tr><td>changeable</td><td>true</td></tr>
+
+
+<tr><td>defaultValueLiteral</td><td>A0</td></tr>
+
+
+<tr><td>derived</td><td>false</td></tr>
+
+
+<tr><td>iD</td><td>false</td></tr>
+
+
+<tr><td>lowerBound</td><td>0</td></tr>
+
+
+<tr><td>name</td><td>channelSecurityLevel</td></tr>
+
+
+<tr><td>ordered</td><td>true</td></tr>
+
+
+<tr><td>transient</td><td>false</td></tr>
+
+
+<tr><td>unique</td><td>true</td></tr>
+
+
+<tr><td>unsettable</td><td>false</td></tr>
+
+
+<tr><td>upperBound</td><td>1</td></tr>
+
+
+<tr><td>volatile</td><td>false</td></tr>
+
+
+</tbody>
+</table>
+
+<h2><a name="at_codBinding" /><img src="../icons/ecore/EAttribute.gif" />Attribute ecore :: EString codBinding</h2>
+<p>[[ TODO - add documentation here ]]</p>
+
+
+
+<table border="1">
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td><img src="../../icons/ecore/EDataType.gif" /><a href="../../ecore/datatypes/EString.html">ecore :: EString</a></td></tr>
+
+<tr><td>changeable</td><td>true</td></tr>
+
+
+<tr><td>defaultValueLiteral</td><td>null</td></tr>
+
+
+<tr><td>derived</td><td>false</td></tr>
+
+
+<tr><td>iD</td><td>false</td></tr>
+
+
+<tr><td>lowerBound</td><td>0</td></tr>
+
+
+<tr><td>name</td><td>codBinding</td></tr>
+
+
+<tr><td>ordered</td><td>true</td></tr>
+
+
+<tr><td>transient</td><td>false</td></tr>
+
+
+<tr><td>unique</td><td>true</td></tr>
+
+
+<tr><td>unsettable</td><td>false</td></tr>
+
+
+<tr><td>upperBound</td><td>1</td></tr>
+
+
+<tr><td>volatile</td><td>false</td></tr>
+
+
+</tbody>
+</table>
+
+
+
+
+<div>generated on 13-feb-2012 at 14.49.13 by <a href="http://metamodeldoc.randomice.net">metamodeldoc</a></div></body></html>

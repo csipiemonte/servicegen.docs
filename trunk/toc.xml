@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="MDDTools - Servicegen User&apos;s guide" topic="html/servicegen/overview.html">
+ 	<topic href="html/servicegen/overview.html" label="Servicegen">
+    <topic href="html/servicegen/howto_start.html" label="How to start">
+    </topic>
+    <topic href="html/servicegen/tutorials.html" label="Tutorials">
+       <topic href="html/servicegen/tutorials/helloworld/helloworld.html" label="Tutorial: hello service-generated world!">
+       </topic>
+       <topic href="html/servicegen/tutorials/sampleappl/sampleappl.html" label="Tutorial: esempio di servizio applicativo">
+       </topic>
+       <topic href="html/servicegen/tutorials/sampleorch/sampleorch.html" label="Tutorial: esempio di servizio di orchestrazione">
+       </topic>
+       <topic href="html/servicegen/tutorials/integrazioneServicegenDatagen/integ_spring_servicegen_datagen.html" label="Tutorial: integrazione Service Datagen">
+       </topic>
+       <topic href="html/servicegen/tutorials/integrazioneServicegenDatagen/integ_spring_doppioservicegen_datagen.html" label="Tutorial: integrazione tra N Service e M Datagen">
+       </topic>
+    </topic>
+    <topic href="html/servicegen/mm_reference.html" label="Guida di riferimento metamodello">
+    </topic>
+    <topic href="html/servicegen/models_structure.html" label="Struttura e dipendenza dei modelli">
+    </topic>
+    <topic href="html/servicegen/cartridges.html" label="Cartridges">
+       <topic href="html/servicegen/cartridges/cartridges_csi.html" label="Cartridges C.S.I">
+       </topic>
+       <topic href="html/servicegen/cartridges/cartridges_cxf.html" label="Cartridges CXF">
+       </topic>
+    </topic>
+    <topic href="html/servicegen/faq.html" label="F.A.Q.">
+    </topic>
+    <topic href="html/servicegen/guides/guides.html" label="Guides">
+       <topic href="html/servicegen/guides/cxfWsSecurity/index.html" label="Guida all&apos;implementazione della WS-Security con CXF">
+       </topic>
+    </topic>
+    <topic href="html/servicegen/rationale.html" label="Appendice: design rationale">
+    </topic>
+    <topic href="html/servicegen/bibl.html" label="Appendice: documenti di riferimento">
+    </topic>
+ </topic>
+</toc>

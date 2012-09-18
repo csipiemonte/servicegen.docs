@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Guida all'implementazione della WS-Security con CXF</title>
+<link type="text/css" href=".//css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+	<h2>Guida all'implementazione della WS-Security con CXF</h2>
+	
+	<h3>Introduzione</h3>
+	
+	Con <b>Servicegen</b> &egrave; possibile definire la WS-Security di un servizio applicativo CXF modellando le caratteristiche specifiche di sicurezza (<b>WSSecuritySpec</b>).
+	<p>
+	Per configurare un servizio al fine di rendere sicuri i suoi messaggi &egrave; necessario modellare un <b>WSEndpoint</b> e
+	quindi definire una sequenza di intercettori (<b>WSEndpointChannel</b>) che il messaggio dovr&agrave; attraversare in ingresso (<b>--> IN WSEndpointChannel</b>) e\o uscita (<b><-- OUT WSEndpointChannel</b>) per securizzare il messaggio. 
+	<p>
+	Ogni <b>WSEndpointChannel</b> contiene la catena di specifiche di sicurezza (<b>WSSecuritySpec</b>) da applicare al canale, quelle possibili sono :
+	autenticazione (<b>WS UsernameToken</b>), integrit&agrave;(<b>WS Encryption</b>), TimeStamp (<b>WS Timestamp</b>) e confidenzialit&agrave;(<b>WS Signature</b>).
+
+	<div align="center">
+		<img alt="Esempio WS-Security" src=".//img/WSSecurity.png"
+			border="1px" title="Esempio WS-Security" align="middle"> <br>
+		<label><b>Esempio di modellazione</b></label>
+	</div>
+	
+	<h3>Configurazione  WSEndpointChannel</h3>
+	<h4>Descrizione WSSecuritySpec</h4>
+	<table class="features" title="Descrizione WSSecuritySpec">
+		<thead>
+			<th>WSSecuritySpec</th>
+			<th>Descrizione</th>
+			<th>Definzione per WSEndpointChannel
+			<th>Codice Generato</th>
+		</thead>
+		<tbody>
+				<tr>
+				<td class="featureSpec">UsernameToken</td>
+				<td class="featureDescr">Abilita l'inserimento di un UsernameToken per l'autenticazione in chiaro</td>
+				<td class="featureDescr">
+				<table align="center"class="tabChannel" >
+					<thead>
+						<th>-->IN WSEndpointChannel</th>
+						<th>-->OUT WSEndpointChannel</th>
+					</thead>
+					<tbody>
+					<tr>
+					<td>Specifica che ci si aspetta nell' header del messaggio SOAP un UsernameToken con password inviata in chiaro</td>
+					<td>Specifica che all' header del messaggio dovr&agrave; essere applicato un UsernameToken e una password
+					</td>
+					</tbody>
+				</table>
+				</td>
+				<td class="featureDescr">
+				Nella classe di implementazione del CallbackHandler creata per il <b>WSEndpointChanel</b> 
+				viene generata la logica per la gestione della password.
+				<p>
+				<ol type="disc">
+				<li>Se siamo nel canale d' ingresso nel impl del CallbackHandler (<i>InInterceptorCallback#WSEndpoint.code#</i>) viene generato il metodo setPassordUsernameToken() con una regione protetta al suo interno per permettere l'inserimento della password
+				</li>
+				<li>Se siamo nel canale di uscita nel impl del CallbackHandler (<i>OutInterceptorCallback#WSEndpoint.code#</i>) viene generato il metodo validatePassordUsernameToken() per il controllo dello user e della passord.
+				</li>
+				</ol>
+				</td>
+				<tr>
+				
+				
+				
+				
+				<td class="featureSpec">Timestamp</td>
+				<td class="featureDescr">Permette di gestire la temporalit&agrave; dei messaggi</td>
+				<td class="featureDescr">
+				<table align="center"class="tabChannel" >
+					<thead>
+						<th>-->IN WSEndpointChannel</th>
+						<th>-->OUT WSEndpointChannel</th>
+					</thead>
+					<tbody>
+					<tr>
+					<td>Specifica che ci si aspetta un Timestamp nel messaggio in ingresso</td>
+					<td>Specifica che deve essere applicato un Timestamp nel messaggio di uscita</td>
+					</tbody>
+				</table>
+				</td>
+				<td class="featureDescr"></td>
+				<tr>				
+				<td class="featureSpec">Signature</td>
+				<td class="featureDescr">Abilita la firma del messaggio.</td>
+				<td class="featureDescr">
+				<table align="center"class="tabChannel" >
+					<thead>
+						<th>-->IN WSEndpointChannel</th>
+						<th>-->OUT WSEndpointChannel</th>
+					</thead>
+					<tbody>
+					<tr>
+					<td>Specifica che ci si aspetta un messaggio firmato e nel file di confugurazione avremo definite le properties per verificare la firma del messaggio</td>
+					<td>Specifica che il body del messaggio inviato dovr&agrave; essere firmato con la chiave privata definita tra i file di configurazione</td>
+					</tbody>
+				</table>
+				</td>
+			
+				<td class="featureDescr"> 				
+				Nella classe di implementazione del CallbackHandler creata per il <b>WSEndpointChanel</b> di uscita (<i>OutInterceptorCallback#WSEndpoint.code#</i>) viene generata la logica per la gestione delle password di lettura dei certificati (setPasswordSignature) .
+				<p>
+				Il generatore produrr&agrave; i file di properties per poter accedere ai keystore\trustore 
+				(<i>#codiceServizio##WSEndpoint.code#.ks.properties</i> e/o <i>#codiceServizio##WSEndpoint.code#.ts.properties</i> ). 
+				<p>
+				Per la definizione delle seguenti property  :
+				<ol>
+				<li>org.apache.ws.security.crypto.merlin.keystore.user --> alias chiave privata
+				<li>org.apache.ws.security.crypto.merlin.keystore.password --> indica la password per accedere al keystore/trustore</li>
+				<li>org.apache.ws.security.crypto.merlin.file --> indica il path del keystore/trustore</li>
+				</ol>
+				E' necessario valorizzare le seguenti variabili d'ambiente: 
+				<ol>
+				<li>#codiceServizio##WSEndpoint.code#.user</li>
+				<li>#codiceServizio##WSEndpoint.code#.ks.password</li>
+				<li>#codiceServizio##WSEndpoint.code#.ks.file</li> 
+				</ol>
+				</td>
+				
+				<tr>
+				
+				<td class="featureSpec">Encryption</td>
+				<td class="featureDescr">Abilita la cifratura del messaggio.</td>
+				<td class="featureDescr">
+				
+				<table align="center"class="tabChannel" >
+					<thead>
+						<th>-->IN WSEndpointChannel</th>
+						<th>-->OUT WSEndpointChannel</th>
+					</thead>
+					<tbody>
+					<tr>
+					<td>Specifica che ci si aspetta un messaggio crittografato e nel file di confugurazione avremo definite le properties per decryptare il messaggio</td>
+					<td>Specifica che il body del messaggio inviato dovr&agrave; essere cryptato con la chiave pubblica definita tra i file di configurazione</td>
+					</tbody>
+				</table>
+				</td>
+				
+				<td class="featureDescr"> 				
+				Nella classe di implementazione del CallbackHandler creata per il <b>WSEndpointChanel</b> di ingresso (<i>InInterceptorCallback#WSEndpoint.code#</i>)
+				viene generata la logica per la gestione delle password di lettura dei certificati (setPassordDecrypt).
+				<p>
+				Il generatore produrr&agrave; i file di properties per poter accedere ai keystore\trustore 
+				(<i>#codiceServizio##WSEndpoint.code#.ks.properties</i> e/o <i>#codiceServizio##WSEndpoint.code#.ts.properties</i> ). 
+				<p>
+				Per la definizione delle seguenti property   :
+				<ol>
+				<li>org.apache.ws.security.crypto.merlin.keystore.user --> alias chiave privata
+				<li>org.apache.ws.security.crypto.merlin.keystore.password --> indica la password per accedere al keystore/trustore</li>
+				<li>org.apache.ws.security.crypto.merlin.file --> indica il path del keystore/trustore</li>
+				</ol>
+				E' necessario valorizzare le seguenti variabili d'ambiente: 
+				<ol>
+				<li>#codiceServizio##WSEndpoint.code#.userEncrypt</li>
+				<li>#codiceServizio##WSEndpoint.code#.ks.password</li>
+				<li>#codiceServizio##WSEndpoint.code#.ks.file</li> 
+				</ol>
+				</td>
+				
+				<tr>
+		</tbody>
+	</table>
+	
+</body>
+
+
+
+</html>
