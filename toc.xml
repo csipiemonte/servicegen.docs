@@ -19,6 +19,8 @@
     </topic>
     <topic href="html/servicegen/mm_reference.html" label="Guida di riferimento metamodello">
     </topic>
+    <topic href="html/servicegen/javadoc/index.html" label="Documentazione javadoc">
+    </topic>
     <topic href="html/servicegen/models_structure.html" label="Struttura e dipendenza dei modelli">
     </topic>
     <topic href="html/servicegen/cartridges.html" label="Cartridges">
