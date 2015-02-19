@@ -23,6 +23,7 @@
     </topic>
     <topic href="html/servicegen/models_structure.html" label="Struttura e dipendenza dei modelli">
     </topic>
+    <anchor id="Servicegen_Designers"/>
     <topic href="html/servicegen/cartridges.html" label="Cartridges">
        <topic href="html/servicegen/cartridges/cartridges_csi.html" label="Cartridges C.S.I">
        </topic>
