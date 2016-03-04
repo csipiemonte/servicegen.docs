@@ -2,4 +2,4 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Servicegen Documentation
 Bundle-SymbolicName: servicegen.docs; singleton:=true
-Bundle-Version: 3.3.0.001
+Bundle-Version: 3.3.0.002
